@@ -1,0 +1,1663 @@
+/* App.css */
+
+body {
+  margin: 0;
+  font-family: 'Arial', sans-serif;
+  background-color: #f9f5f4;
+  color: #333;
+  min-height: 100vh; /* Ensure full-screen height */
+}
+
+.App {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh; /* Makes the App container stretch to full height */
+}
+
+.App-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: linear-gradient(to right, #0074D9, #00b8a9); /* Fresh green-to-blue gradient */
+  color: #ffffff;
+  padding: 16px 32px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15); /* Softer shadow */
+  position: relative;
+  z-index: 1;
+  font-family: 'Playfair Display', serif; /* Luxurious font */
+}
+
+.App-header .logo {
+  width: 50px;
+  height: 50px;
+  margin-right: 20px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid #96c93d; /* Green border for freshness */
+}
+
+.App-header h1 {
+  font-size: 28px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  margin-left: 0;
+  color: #f0fff4; /* Soft white-green tone for elegance */
+  text-transform: uppercase;
+}
+
+.App-header nav {
+  margin-left: auto;
+}
+
+.App-header nav ul {
+  display: flex;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+.App-header nav ul li {
+  margin: 0 20px;
+}
+
+.App-header nav ul li a {
+  font-size: 18px;
+  color: #f0fff4; /* Soft white-green for a clean look */
+  text-decoration: none;
+  font-weight: 600;
+  padding-bottom: 5px;
+  transition: all 0.4s ease;
+  text-transform: capitalize;
+  position: relative;
+  font-family: 'Poppins', sans-serif; /* Modern and sleek */
+}
+
+.App-header nav ul li a::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -2px;
+  width: 0;
+  height: 2px;
+  background-color: #a8e063; /* Light green accent for hover */
+  transition: width 0.4s ease-in-out;
+}
+
+.App-header nav ul li a:hover::before {
+  width: 100%;
+}
+
+.App-header nav ul li a:hover {
+  color: #a8e063; /* Bright green for hover effect */
+  transform: scale(1.1);
+  text-shadow: 0 3px 10px rgba(168, 224, 99, 0.4); /* Subtle green glow */
+}
+
+.App-header nav ul li a:hover {
+  box-shadow: 0 4px 15px rgba(168, 224, 99, 0.5); /* Hover effect with green glow */
+}
+
+
+main {
+  flex: 1;
+  padding: 30px; /* Increased padding for a spacious layout */
+  max-width: 1300px;
+  margin: 0 auto;
+  background: #ffffff; /* Clean white background */
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1); /* Slightly stronger shadow for depth */
+  border-radius: 15px; /* Rounded corners for a softer, modern look */
+  overflow: hidden; /* Ensures nothing overflows */
+}
+
+@media screen and (max-width: 768px) {
+  main {
+    padding: 20px; /* Less padding on smaller screens */
+  }
+}
+
+
+footer {
+  background-color: #0074D9;
+  color: white;
+  text-align: center;
+  padding: 10px 0;
+}
+
+header, main, footer {
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* Footer Styles */
+footer {
+  background: linear-gradient(135deg, #f8c9c9 0%, #f8a9a9 100%);
+  color: white;
+  text-align: center;
+  padding: 60px 30px;
+  font-family: 'Arial', sans-serif;
+}
+
+footer h3 {
+  font-size: 2.2rem;
+  font-weight: 700;
+  margin-bottom: 15px;
+  letter-spacing: 1px;
+}
+
+footer p {
+  font-size: 1rem;
+  margin: 8px 0;
+  font-style: italic;
+}
+
+footer a {
+  color: white;
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.3s ease;
+}
+
+footer a:hover {
+  color: #f8a9a9;
+}
+
+footer .social-media a {
+  margin: 0 15px;
+}
+
+footer .social-media img {
+  width: 35px;
+  height: 35px;
+  transition: transform 0.3s ease;
+}
+
+footer .social-media a:hover img {
+  transform: scale(1.1);
+}
+
+footer ul {
+  list-style: none;
+  padding: 0;
+  margin: 30px 0;
+}
+
+footer ul li {
+  display: inline-block;
+  margin: 0 15px;
+}
+
+footer ul li button {
+  background: none;
+  border: none;
+  color: white;
+  text-decoration: underline;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: text-decoration 0.3s ease;
+}
+
+footer ul li button:hover {
+  text-decoration: none;
+}
+
+footer ul li button:focus {
+  outline: none;
+}
+
+footer .copyright {
+  font-size: 0.9rem;
+  color: rgba(255, 255, 255, 0.7);
+  margin-top: 20px;
+}
+
+footer .contact-info {
+  font-size: 1rem;
+  margin-top: 10px;
+}
+
+
+
+
+/* Full-Screen Background */
+body::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: 
+    linear-gradient(to right, hsl(0, 0%, 100%), hsl(182, 65%, 41%)); /* Gradient background */
+  z-index: -1; /* Keep behind content */
+}
+
+body::after {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: 
+    url('data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 28" preserveAspectRatio="none" width="100%" height="100%"%3E%3Cpath d="M0 10C30 18 55 12 80 14C100 16 120 14 120 14V28H0V10Z" fill="rgba(0, 0, 0, 0.25)" /%3E%3C/svg%3E'), /* Enhanced wave pattern */
+    url('data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="100%" height="100%"%3E%3Ccircle cx="30" cy="30" r="10" fill="rgba(255, 255, 255, 0.5)" /%3E%3Ccircle cx="70" cy="50" r="15" fill="rgba(255, 255, 255, 0.3)" /%3E%3Ccircle cx="50" cy="80" r="12" fill="rgba(255, 255, 255, 0.2)" /%3E%3Ccircle cx="90" cy="20" r="8" fill="rgba(255, 255, 255, 0.6)" /%3E%3Ccircle cx="10" cy="70" r="5" fill="rgba(255, 255, 255, 0.4)" /%3E%3C/svg%3E'); /* Bubble pattern */
+  opacity: 0.35; /* Slightly higher opacity for better visibility */
+  z-index: -1; /* Keeps it behind content */
+}
+
+
+/* Home Component Styles */
+/* Main container */
+/* Importing Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Lato:wght@400&family=Roboto:wght@400&display=swap');
+
+/* General Reset */
+body, html {
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
+  box-sizing: border-box;
+  overflow-x: hidden; /* Prevent horizontal scrolling */
+}
+
+/* Navbar Styles */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: rgba(19, 87, 6, 0.8); /* Darker glass effect for better visibility */
+  padding: 20px 30px; /* Increased vertical padding for a taller navbar */
+  border-bottom: 2px solid #00b8a9; /* Teal bottom border to match the logo */
+  backdrop-filter: blur(10px); /* Glass effect */
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+}
+
+.navbar .logo {
+  font-family: 'Playfair Display', serif; /* Playfair Display for logo */
+  font-size: 28px; /* Increased font size for better visibility */
+  font-weight: bold;
+  color: #ffffff; /* White color for logo for contrast */
+  text-transform: uppercase; /* Make the logo text uppercase */
+}
+
+.navbar nav a {
+  margin: 0 20px; /* Increased margin between links for better spacing */
+  text-decoration: none;
+  font-size: 18px; /* Slightly larger font for better readability */
+  color: #ffffff; /* White text for navigation links */
+  transition: color 0.3s ease, opacity 0.3s ease; /* Smooth transition for both color and opacity */
+  text-transform: uppercase; /* Uppercase text for uniformity */
+}
+
+.navbar nav a:hover {
+  color: #02302c; /* Teal color on hover */
+  opacity: 0.8; /* Slight opacity on hover */
+}
+
+/* Hero Section */
+.hero-section {
+  position: relative;
+  padding: 100px 30px;
+  background: linear-gradient(to left, #ffffff 50%, #24a6ab 50%); /* Gradient background */
+  text-align: left;
+}
+
+.hero-section::before {
+  content: ""; /* Adds the image */
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: url("https://cdn.shopify.com/s/files/1/0070/7032/articles/Start-a-Skincare-Line_Islenia-Mil_Email_68bb4b03-2c18-4f2c-9f11-81dce299083a.jpg?v=1730479484&originalWidth=1848&originalHeight=782&width=1400") no-repeat center center;
+  background-size: cover;
+  opacity: 0.2; /* Keeps the opacity for image */
+  z-index: 0; /* Keeps image in the background */
+}
+
+/* Hero Text Styling */
+.hero-text {
+  position: absolute; /* Absolute positioning to place text over image */
+  top: 50%; /* Centers the text vertically */
+  left: 50px; /* Move the text a little further from the left edge */
+  transform: translateY(-50%); /* Fine-tune the vertical centering */
+  z-index: 1; /* Keeps text above the image */
+  max-width: 600px;
+  color: #00302a; /* Text color */
+  text-shadow: 2px 2px 4px rgb(255, 255, 255); /* Adds outline/shadow effect */
+}
+
+
+/* Heading Styles */
+.hero-text h1 {
+  font-size: 56px;
+  font-weight: 700;
+  margin-bottom: 20px;
+  text-align: left; 
+}
+
+/* Paragraph Styles */
+.hero-text p {
+  font-size: 28px;  /* Increased font size for better visibility */
+  color: #000000;  /* Darker text color for better contrast */
+  margin-bottom: 35px;  /* Increased margin to give text more breathing room */
+  line-height: 1.75;  /* Balanced line-height for readability */
+  font-family: 'Roboto', sans-serif;
+  text-align: left;
+  margin-left: 0;  /* Ensures text doesn't get too close to the edge */
+  text-shadow: 0 1px 3px rgba(255, 255, 255, 0.856);  /* Light shadow for subtle depth */
+}
+
+/* Highlight Text Style */
+
+.hero-text .highlight {
+  color: #a4e9e3;
+  text-shadow: 0 0 4px rgb(0, 54, 58), 0 0 10px rgb(0, 54, 58); 
+  animation: highlightAnimation 1.5s ease-in-out infinite;  
+}
+
+
+/* Button Group */
+.button-group {
+  display: flex;
+  gap: 25px; /* Spacing between buttons */
+  justify-content: center;
+  margin-top: 40px; /* Space above the buttons */
+  flex-wrap: wrap; /* Allow buttons to wrap if the screen is too small */
+}
+
+/* Individual Button Styling */
+.button-group {
+  display: flex;
+  justify-content: flex-start; /* Align buttons at the start (top left) */
+  gap: 20px; /* Spacing between buttons */
+  margin-top: 20px; /* Space above the buttons */
+}
+
+.button-group button {
+  padding: 14px 40px; /* Adjust padding for balanced space */
+  font-size: 18px; /* Larger font size for readability */
+  color: #ffffff;
+  background: linear-gradient(145deg, #00302a, #006757); /* Gradient for depth */
+  border: none;
+  border-radius: 12px; /* Smooth rounded corners */
+  cursor: pointer;
+  transition: all 0.3s ease; /* Smooth hover and scaling effects */
+  font-family: 'Roboto', sans-serif;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.15); /* Subtle depth */
+  white-space: nowrap; /* Prevent text from wrapping */
+}
+
+/* Hover and active states for buttons */
+.button-group button:hover {
+  background: linear-gradient(145deg, #006757, #00302a); /* Gradient flip on hover */
+  transform: scale(1.05); /* Slight zoom effect */
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2); /* Slightly stronger shadow */
+}
+
+.button-group button:active {
+  transform: scale(0.98); /* Slight shrink on press */
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1); /* Softer shadow on press */
+}
+
+/* Hero Image */
+.hero-image {
+  flex: 10; /* Let the image take up equal space */
+  display: flex;
+  justify-content: flex-start; /* Align the image to the left */
+}
+
+.hero-image img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 20px;
+  box-shadow: 0px 4px 8px rgb(0, 0, 0);
+}
+
+/* Featured Products Section */
+.featured-products {
+  padding: 40px 60px;
+  background-color: hsl(0, 0%, 100%);
+  box-shadow: 0px 6px 20px rgba(0, 0, 0, 0.5); /* Floating effect with shadow */
+  margin-top: 40px; /* Space from hero section */
+  z-index: 5;
+  position: relative;
+  text-align: center;
+}
+
+.featured-products h2 {
+  font-family: 'Lato', sans-serif;
+  font-size: 40px;
+  color: #004d40;
+  margin-bottom: 30px;
+}
+
+.product-cards {
+  display: flex;
+  justify-content: space-around;
+  gap: 20px; /* Add consistent spacing between cards */
+}
+
+.product-card {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.6), rgba(0, 170, 255, 0.6)); /* Gradient background for each card */
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  width: 280px;
+  height: 450px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+.product-card:hover {
+  transform: translateY(-10px); /* Lift effect on hover */
+  box-shadow: 0px 10px 25px rgba(0, 0, 0, 0.2); /* Enhanced shadow for hover */
+}
+
+
+.product-card:hover {
+  transform: translateY(-10px); /* Lift effect on hover */
+  box-shadow: 0px 10px 25px rgba(0, 0, 0, 0.2); /* Enhanced shadow for hover */
+}
+
+
+.product-card:hover {
+  transform: translateY(-10px); /* Lift effect on hover */
+  box-shadow: 0px 10px 25px rgba(0, 0, 0, 0.2); /* Enhanced shadow for hover */
+}
+
+
+.product-card img {
+  width: 100%;
+  height: 200px; /* Fixed height for consistent image size */
+  object-fit: cover; /* Ensure the image fits the area without distortion */
+  border-radius: 8px;
+}
+
+.product-card h3 {
+  font-family: 'Lato', sans-serif;
+  font-size: 20px; /* Slightly smaller font size */
+  color: #004d40;
+  margin-top: 15px;
+}
+
+.product-card p {
+  font-family: 'Roboto', sans-serif;
+  color: #555;
+  margin: 10px 0;
+  flex-grow: 1; /* Allows the text to stretch and balance the layout */
+  font-size: 14px; /* Smaller font size for better fit */
+  line-height: 1.4; /* Reduced line height for better spacing */
+  text-overflow: ellipsis; /* Prevent overflow */
+  overflow: hidden;
+  white-space: nowrap; /* Prevents text from wrapping */
+}
+
+/* Product Card Button Styling */
+.product-card button {
+  background-color: #00302a;
+  border: none;
+  color: white;
+  padding: 12px 20px; /* Increased padding for better button size */
+  border-radius: 5px;
+  cursor: pointer;
+  font-family: 'Roboto', sans-serif;
+  transition: background-color 0.3s ease;
+  margin-top: 15px; /* Adding space between buttons */
+  width: 100%; /* Ensures button spans the entire width */
+}
+
+.product-card button:hover {
+  background-color: #00796b;
+}
+
+/* Product Card Container Styling */
+.product-card-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: space-between;
+}
+
+/* Individual Product Card Styling */
+.product-card {
+  width: 23%;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between; /* Ensures content is spread out */
+  height: auto; /* Let height be based on content */
+  transition: transform 0.3s ease;
+}
+
+.product-card img {
+  width: 100%;
+  height: 200px; /* Fixed height for consistent image size */
+  object-fit: cover; /* Ensure the image fits the area without distortion */
+  border-radius: 8px;
+}
+
+.product-card h3 {
+  font-family: 'Lato', sans-serif;
+  font-size: 20px; /* Slightly smaller font size */
+  color: #004d40;
+  margin-top: 15px;
+}
+
+.product-card p {
+  font-family: 'Roboto', sans-serif;
+  color: #555;
+  margin: 10px 0;
+  flex-grow: 1; /* Allows the text to stretch and balance the layout */
+  font-size: 14px; /* Smaller font size for better fit */
+  line-height: 1.4; /* Reduced line height for better spacing */
+  text-overflow: ellipsis; /* Prevent overflow */
+  overflow: hidden;
+  white-space: nowrap; /* Prevents text from wrapping */
+}
+
+/* Ensure Price is Visible and Not Overlapped */
+.product-price {
+  min-height: 40px;
+  color: black;
+  font-size: 16px;
+  font-weight: bold;
+  margin-top: 15px; /* Spacing before price */
+}
+
+/* Product Buttons */
+
+.product-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 3px; /* Reduced gap between buttons */
+  margin-top: 10px;
+  justify-content: flex-end; /* Buttons stay at the bottom */
+  width: 100%;
+}
+
+
+/* Button Styling */
+button {
+  padding: 10px 0;
+  font-size: 0.9rem;
+  border-radius: 5px;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  height: 45px; /* Fixed height */
+  width: 100%; /* Make buttons fill the container */
+}
+
+.view-details-btn {
+  background-color: #007bff;
+  color: #fff;
+}
+
+.add-to-cart-btn {
+  background-color: #ffc107;
+  color: #333;
+}
+
+.buy-btn {
+  background-color: #28a745;
+  color: #fff;
+}
+
+/* Button Hover Effects */
+button:hover {
+  opacity: 0.8;
+}
+
+.view-details-btn:hover {
+  background-color: #0056b3;
+}
+
+.add-to-cart-btn:hover {
+  background-color: #e0a800;
+}
+
+.buy-btn:hover {
+  background-color: #218838;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .product-card-container {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .product-card {
+    width: 90%;
+    margin-bottom: 20px;
+  }
+
+  .product-buttons {
+    width: 100%;
+  }
+}
+
+/*Section for Products.js*/
+.header {
+  text-align: center;
+  margin-bottom: 40px;
+  padding: 20px;
+  background-color: #f8f8f8;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.header h1 {
+  font-size: 36px;
+  color: #2d9e5e;
+  margin-bottom: 10px;
+}
+
+.header p {
+  font-size: 18px;
+  color: #555;
+  line-height: 1.6;
+}
+
+/* Category Section */
+.category {
+  margin-bottom: 60px;
+}
+
+.category h2 {
+  font-size: 28px;
+  color: #333;
+  margin-bottom: 30px;
+  text-align: center;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+/* Product grid layout */
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* 3 products per row */
+  gap: 30px; /* Space between products */
+  justify-items: center;
+  padding: 0 20px;
+}
+
+/* Individual product card styling */
+.product-card {
+  width: 100%; /* Auto-adjust based on grid */
+  max-width: 300px; /* Limit the max size */
+  border: 1px solid #ddd;
+  border-radius: 15px;
+  padding: 25px; /* Increased padding for better spacing */
+  text-align: center;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15); /* Stronger shadow for premium look */
+  background-color: white;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  min-height: 450px; /* Added height to make cards taller */
+}
+
+.product-card:hover {
+  transform: translateY(-5px); /* Lift on hover */
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2); /* Stronger shadow on hover */
+}
+
+.product-card img {
+  width: 100%;
+  height: 300px; /* Increased height for a taller appearance */
+  object-fit: cover; /* Crop image nicely while keeping it centered */
+  border-radius: 15px; /* Maintain rounded corners */
+  transition: transform 0.3s ease;
+}
+
+.product-card img:hover {
+  transform: scale(1.05); /* Slight zoom effect on hover */
+}
+
+.product-card h3 {
+  font-size: 20px;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 10px;
+}
+
+.product-card p {
+  font-size: 18px;
+  color: #666;
+  margin-bottom: 15px;
+}
+
+.product-card button {
+  padding: 12px 20px;
+  background-color: #2d9e5e;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.product-card button:hover {
+  background-color: #228b46;
+}
+
+/* Modals*/
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.6);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+/* Modal content box */
+.modal-content {
+  background-color: white;
+  padding: 30px;
+  border-radius: 15px;
+  max-width: 600px;
+  width: 90%;
+  text-align: center;
+  position: relative;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3); /* Premium modal shadow */
+}
+
+.modal-product-image {
+  width: 100%;
+  height: auto;
+  border-radius: 15px;
+  margin-bottom: 20px;
+}
+
+/* Close Button */
+.close-btn {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  font-size: 40px;  /* Increase the size of the 'X' */
+  cursor: pointer;
+  color: #000;
+  background: none;
+  border: none;
+  width: 30px;  /* Slightly wider button */
+  height: 30px; /* Adjust height to maintain symmetry */
+  padding: 0;  /* Remove default padding */
+  text-align: center;  /* Center the 'X' symbol */
+  border-radius: 50%; /* Keep it round */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.close-btn:hover {
+  color: rgb(102, 0, 0);
+}
+
+
+.buy-btn {
+  margin-top: 20px;
+  padding: 15px 25px;
+  background-color: #2d9e5e;
+  color: white;
+  font-size: 18px;
+  font-weight: bold;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.buy-btn:hover {
+  background-color: #228b46;
+  transform: scale(1.05);
+}
+
+/*Close-Button Modal of Home.js*/
+.close-button {
+  all: unset; 
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  font-size: 40px;
+  color: #770000;
+  width: 30px;
+  height: 30px;
+  text-align: center;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+
+.close-button:hover {
+  color: rgb(102, 0, 0);
+}
+
+
+/* Cart Component Styles */
+/* Container for the entire cart page */
+/* Overall Cart Container with soft and clean aesthetic */
+.cart-container {
+  width: 100%;
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 40px;
+  background-color: #ffffff;
+  border-radius: 20px;
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.1);
+  font-family: 'Lora', serif;
+  background: linear-gradient(135deg, #f0f0f0 0%, #fafafa 100%);
+  transform: scale(1);
+  transition: transform 0.3s ease;
+}
+
+.cart-container:hover {
+  transform: scale(1.02); /* Gentle zoom effect on hover */
+}
+
+/* Cart Page Title */
+.cart-container h2 {
+  text-align: center;
+  font-size: 3rem;
+  color: #2c3e50;
+  margin-bottom: 30px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.cart-container h2:hover {
+  color: #8e44ad; /* Purple hover effect */
+  transform: translateY(-5px); /* Subtle lift on hover */
+}
+
+/* Paragraph text for instructions or descriptions */
+.cart-container p {
+  text-align: center;
+  font-size: 1.1rem;
+  color: #7f8c8d;
+  margin-bottom: 40px;
+  font-weight: 400;
+  opacity: 0.85;
+  transition: opacity 0.3s ease;
+}
+
+.cart-container p:hover {
+  opacity: 1; /* Subtle emphasis on hover */
+}
+
+/* Cart items container with soft, subtle borders */
+.cart-items-container {
+  margin-bottom: 40px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid #e4e4e4;
+}
+
+/* Individual Cart Item Style */
+.cart-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 0;
+  border-bottom: 1px solid #e6e6e6;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.cart-item:hover {
+  background-color: #f9f9f9;
+  transform: translateX(5px); /* Subtle slide effect for hover */
+}
+
+.cart-item h3 {
+  font-size: 1.6rem;
+  color: #34495e;
+  font-weight: 500;
+  transition: color 0.3s ease;
+}
+
+.cart-item h3:hover {
+  color: #8e44ad; /* Change color to match theme */
+}
+
+.cart-item p {
+  font-size: 1.2rem;
+  color: #7f8c8d;
+}
+
+.cart-item button {
+  padding: 12px 22px;
+  background-color: #8e44ad;
+  color: #fff;
+  border: none;
+  border-radius: 12px;
+  font-size: 1.1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.cart-item button:hover {
+  background-color: #013144;
+  transform: scale(1.05);
+  box-shadow: 0 5px 25px rgba(0, 0, 0, 0.15);
+  transition: all 0.3s ease;
+}
+
+/* Cart Summary Section */
+.cart-summary {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 40px;
+  border-top: 2px solid #e0e0e0;
+  padding-top: 20px;
+  transition: transform 0.3s ease;
+}
+
+.cart-summary:hover {
+  transform: translateY(-5px); /* Smooth lift for summary */
+}
+
+.cart-summary h3 {
+  font-size: 2rem;
+  color: #2c3e50;
+  font-weight: 600;
+}
+
+.cart-summary p {
+  font-size: 1.5rem;
+  color: #7f8c8d;
+  font-weight: 500;
+}
+
+/* Buttons container at the bottom of the cart */
+.cart-buttons-container {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 50px;
+}
+
+.cart-buttons-container button {
+  padding: 18px 30px;
+  font-size: 1.2rem;
+  font-weight: 600;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+  width: 48%;
+  border: none;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.proceed-btn {
+  background-color: #3498db;
+  color: #fff;
+}
+
+.proceed-btn:hover {
+  background-color: #2980b9;
+  transform: scale(1.05);
+  box-shadow: 0 5px 25px rgba(0, 0, 0, 0.15);
+}
+
+.clear-cart-btn {
+  background-color: #95a5a6;
+  color: #fff;
+}
+
+.clear-cart-btn:hover {
+  background-color: #7f8c8d;
+  transform: scale(1.05);
+  box-shadow: 0 5px 25px rgba(0, 0, 0, 0.15);
+}
+
+/* Empty Cart Message */
+.cart-empty-message {
+  text-align: center;
+  padding: 40px 0;
+  display: none;
+}
+
+.cart-empty-message p {
+  font-size: 1.8rem;
+  color: #e74c3c;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+/* Show empty cart message if cart is empty */
+.cart-items-container.empty-cart + .cart-empty-message {
+  display: block;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .cart-container {
+    padding: 20px;
+  }
+
+  .cart-items-container {
+    margin-bottom: 20px;
+  }
+
+  .cart-item h3 {
+    font-size: 1.4rem;
+  }
+
+  .cart-summary h3, .cart-summary p {
+    font-size: 1.4rem;
+  }
+
+  .cart-buttons-container button {
+    font-size: 1rem;
+    padding: 12px 20px;
+  }
+}
+
+
+/* General Account Container Styling */
+.account-container {
+  display: flex;
+  max-width: 1200px; /* Spacious container width */
+  margin: 50px auto;
+  padding: 50px;
+  border-radius: 20px; /* Softer rounded corners */
+  background-color: #fff;
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15); /* More depth for the container */
+  font-family: 'Roboto', Arial, sans-serif;
+  transition: all 0.3s ease-in-out; /* Smooth transition for hover effects */
+}
+
+.account-container:hover {
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2); /* Dynamic shadow effect on hover */
+}
+
+/* Left Side Styling */
+.left-side {
+  flex: 1;
+  background-color: #007bff;
+  color: #fff;
+  padding: 60px; /* More padding for spacious feel */
+  border-radius: 20px 0 0 20px; /* Rounded corners for left side */
+  margin-right: 30px; /* More space between sides */
+  transition: all 0.3s ease; /* Smooth hover effects */
+}
+
+.left-side:hover {
+  transform: translateY(-5px); /* Slightly lift the left side on hover */
+}
+
+.left-side h2 {
+  font-size: 2.8rem; /* Larger heading for a bold look */
+  margin-bottom: 35px;
+  font-weight: 700; /* Make heading bold */
+  text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.15); /* Soft shadow for depth */
+}
+
+.left-side p {
+  font-size: 1.3rem;
+  margin-bottom: 25px;
+}
+
+.left-side label {
+  display: block;
+  color: #fff;
+  font-size: 1.1rem;
+  margin-bottom: 15px;
+}
+
+.left-side input {
+  width: 100%;
+  padding: 18px;
+  margin-bottom: 20px;
+  border: 1px solid #fff;
+  border-radius: 12px; /* Rounded corners for input fields */
+  font-size: 1.3rem;
+  padding-left: 20px;
+  background-color: #ffffff; /* Light background for input fields */
+  color: #333; /* Dark text for readability */
+}
+
+.left-side input:focus {
+  outline: none;
+  border-color: #0056b3; /* Subtle blue border when focused */
+  box-shadow: 0 0 5px rgba(0, 86, 179, 0.7); /* Soft glow effect on focus */
+}
+
+/* Button Styling for Add Account, Update Account, and Log Out */
+/* Styling for buttons inside the .left-side container */
+.left-side button {
+  padding: 12px 25px; /* Adjust padding */
+  margin-bottom: 20px; /* Space between buttons */
+  border: none;
+  border-radius: 10px; /* Smooth rounded corners */
+  font-size: 1.1rem; /* Font size for better fitting */
+  font-weight: 600;
+  cursor: pointer;
+  text-align: center; /* Center align the text */
+  display: block; /* Block display to ensure buttons stack vertically */
+  width: 100%; /* Make buttons take up full width of their container */
+  box-sizing: border-box; /* Include padding and border in the width */
+  white-space: nowrap; /* Prevent text from wrapping */
+  overflow: hidden; /* Hide overflowed text */
+  text-overflow: ellipsis; /* Add ellipsis for long text */
+}
+
+/* Specific styles for primary button */
+.left-side .btn-primary {
+  background-color: #0056b3; /* Primary button color */
+}
+
+.left-side .btn-primary:hover {
+  background-color: #004080; /* Darker shade for hover effect */
+}
+
+/* Specific styles for secondary button */
+.left-side .btn-secondary {
+  background-color: #28a745; /* Green color for 'Add Account' */
+}
+
+.left-side .btn-secondary:hover {
+  background-color: #218838; /* Darker green for hover effect */
+}
+
+/* Specific styles for danger button */
+.left-side .btn-danger {
+  background-color: #dc3545; /* Red color for 'Log Out' */
+}
+
+.left-side .btn-danger:hover {
+  background-color: #c82333; /* Darker red for hover effect */
+}
+
+/* Optional: Make the buttons responsive for smaller screens */
+@media (max-width: 768px) {
+  .left-side button {
+    padding: 12px 20px; /* Adjust padding for mobile screens */
+    font-size: 1rem; /* Reduce font size for mobile */
+  }
+}
+
+
+
+/* Right Side Styling */
+.right-side {
+  flex: 1;
+  background-color: #f7f7f7;
+  padding: 60px;
+  color: #495057;
+  border-radius: 0 20px 20px 0;
+  transition: all 0.3s ease;
+}
+
+.right-side:hover {
+  transform: translateY(-5px); /* Slight lift on hover */
+}
+
+.right-side h3 {
+  font-size: 2rem;
+  color: #495057;
+  margin-bottom: 25px;
+  font-weight: 600;
+  text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1); /* Light shadow for depth */
+}
+
+.right-side p {
+  font-size: 1.2rem;
+  color: #6c757d;
+  line-height: 1.6; /* Line height for better readability */
+}
+
+/* Adjustments for smaller screens */
+@media (max-width: 768px) {
+  .account-container {
+    flex-direction: column;
+    max-width: 100%;
+    padding: 20px;
+  }
+
+  .left-side,
+  .right-side {
+    border-radius: 20px;
+    margin-right: 0; /* Remove right margin */
+  }
+}
+
+
+
+
+
+/* Main container for Login */
+.login-container {
+  max-width: 400px;
+  margin: 50px auto;
+  padding: 30px;
+  border-radius: 10px;
+  background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+  font-family: 'Roboto', Arial, sans-serif;
+  text-align: center;
+  color: #343a40;
+}
+
+/* Title Styling */
+.login-container h2 {
+  font-size: 2rem;
+  margin-bottom: 20px;
+  color: #007bff;
+  font-weight: 700;
+}
+
+/* Form Styling */
+.login-container form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  text-align: left;
+  width: 100%;
+}
+
+/* Label Styling */
+.login-container label {
+  font-weight: 600;
+  font-size: 0.9rem;
+  color: #495057;
+}
+
+/* Input Styles */
+.login-container input {
+  width: 100%;
+  padding: 12px 15px;
+  border: 1px solid #ced4da;
+  border-radius: 8px;
+  font-size: 1rem;
+  color: #495057;
+  background-color: #ffffff;
+  transition: all 0.3s ease;
+}
+
+.login-container input:focus {
+  border-color: #007bff;
+  background-color: #f8f9fa;
+  outline: none;
+  box-shadow: 0 0 8px rgba(0, 123, 255, 0.2);
+}
+
+/* Button Styling */
+.login-container button {
+  padding: 12px;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 600;
+  background-color: #007bff;
+  color: #fff;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.login-container button:hover {
+  background-color: #0056b3;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+  .login-container {
+    padding: 20px;
+  }
+
+  .login-container h2 {
+    font-size: 1.5rem;
+  }
+
+  .login-container input {
+    padding: 10px 12px;
+  }
+
+  .login-container button {
+    padding: 10px;
+  }
+}
+
+/* Main container for Register */
+.register-container {
+  max-width: 400px;
+  margin: 50px auto;
+  padding: 30px;
+  border-radius: 10px;
+  background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+  font-family: 'Roboto', Arial, sans-serif;
+  text-align: center;
+  color: #343a40;
+}
+
+/* Title Styling */
+.register-container h2 {
+  font-size: 2rem;
+  margin-bottom: 20px;
+  color: #007bff;
+  font-weight: 700;
+}
+
+/* Form Styling */
+.register-container form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  text-align: left;
+  width: 100%;
+}
+
+/* Label Styling */
+.register-container label {
+  font-weight: 600;
+  font-size: 0.9rem;
+  color: #495057;
+}
+
+/* Input Styles */
+.register-container input {
+  width: 100%;
+  padding: 12px 15px;
+  border: 1px solid #ced4da;
+  border-radius: 8px;
+  font-size: 1rem;
+  color: #495057;
+  background-color: #ffffff;
+  transition: all 0.3s ease;
+}
+
+.register-container input:focus {
+  border-color: #007bff;
+  background-color: #f8f9fa;
+  outline: none;
+  box-shadow: 0 0 8px rgba(0, 123, 255, 0.2);
+}
+
+/* Button Styling */
+.register-container button {
+  padding: 12px;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 600;
+  background-color: #007bff;
+  color: #fff;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.register-container button:hover {
+  background-color: #0056b3;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+  .register-container {
+    padding: 20px;
+  }
+
+  .register-container h2 {
+    font-size: 1.5rem;
+  }
+
+  .register-container input {
+    padding: 10px 12px;
+  }
+
+  .register-container button {
+    padding: 10px;
+  }
+}
+
+/* Container for the Order History */
+/* Order History Container */
+.order-history-container {
+  padding: 20px;
+  background-color: #eaf8fd; /* Light blue gradient-like background */
+  font-family: 'Arial', sans-serif;
+  color: #222; /* Default text color */
+}
+
+.order-history-container h2 {
+  color: #00796b; /* Teal header */
+  font-size: 24px;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.order-history-container p {
+  margin-bottom: 20px;
+  color: #555;
+  text-align: center;
+}
+
+/* Order List */
+.order-list {
+  display: flex;
+  flex-direction: column;
+  gap: 20px; /* Space between order items */
+}
+
+/* Individual Order Items */
+.order-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+  background-color: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.order-item:hover {
+  transform: scale(1.02);
+  box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
+}
+
+.order-info {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.order-info h3 {
+  font-size: 18px;
+  color: #333;
+  margin: 0;
+}
+
+.order-info span {
+  font-size: 14px;
+  color: #777;
+}
+
+.order-price {
+  font-weight: bold;
+  color: #00796b; /* Teal price color */
+  font-size: 16px;
+}
+
+/* View Details Button */
+.order-item button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4px 8px; /* Small button size */
+  background-color: transparent;
+  color: #00796b; /* Teal text color */
+  border: 1px solid #00796b; /* Light teal border */
+  border-radius: 12px; /* Rectangle shape with slight rounding */
+  cursor: pointer;
+  font-size: 12px; /* Smaller font size */
+  font-weight: bold;
+  transition: background-color 0.3s, color 0.3s, box-shadow 0.3s;
+  margin-left: auto; /* Align button to the right */
+}
+
+.order-item button:hover {
+  background-color: #eaf8fd; /* Light teal background on hover */
+  color: #004d40; /* Darker teal text on hover */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.order-item button i {
+  font-size: 12px; /* Icon size */
+  margin-left: 4px; /* Space between text and icon */
+}
+
+
+
+
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.modal-content {
+  background: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  text-align: center;
+  position: relative;
+  max-width: 500px;
+  width: 90%;
+}
+
+.modal-content img {
+  max-width: 100%;
+  height: auto;
+  margin-bottom: 15px;
+}
+
+.close-button {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+
+.modal-content button {
+  margin-top: 10px;
+  padding: 10px 20px;
+  background: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.modal-content button:hover {
+  background: #0056b3;
+}
+/* Modal Overlay */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent dark background */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000; /* Ensure modal is above other content */
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0s ease 0.3s;
+}
+
+/* Modal Content */
+.modal-content {
+  background-color: white;
+  padding: 20px;
+  border-radius: 8px;
+  max-width: 500px;
+  width: 90%;
+  text-align: center;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s ease;
+}
+
+.modal-content img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+  margin-bottom: 10px;
+}
+
+/* Product Price */
+.product-price {
+  font-size: 1.2rem;
+  font-weight: bold;
+  margin-top: 10px;
+}
+
+/* Close Button */
+.close-btn {
+  background-color: #f44336;
+  color: white;
+  padding: 10px;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+  margin-top: 10px;
+  font-size: 1rem;
+}
+
+.close-btn:hover {
+  background-color: #d32f2f;
+}
+
+/* Open modal state (When visible) */
+.modal-overlay.show {
+  opacity: 1;
+  visibility: visible;
+  transition: opacity 0.3s ease, visibility 0s ease 0s;
+}
+
+.modal-content.show {
+  transform: translateY(0); /* Animate modal into view */
+}
+
+/* Optional styling for product cards if you want consistent padding or borders */
+.product-card {
+  margin: 10px;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+}
+
+.product-card:hover {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
