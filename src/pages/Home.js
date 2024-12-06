@@ -1,18 +1,17 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { FaFacebook, FaInstagram } from 'react-icons/fa';
 
 function App() {
   const navigate = useNavigate();
   const [modalData, setModalData] = useState(null); // State for modal content
   const [isModalOpen, setIsModalOpen] = useState(false); // State for modal visibility
 
-  // Function to open the modal with specific product data
   const openModal = (product) => {
     setModalData(product);
     setIsModalOpen(true);
   };
 
-  // Function to close the modal
   const closeModal = () => {
     setIsModalOpen(false);
     setModalData(null);
@@ -44,28 +43,13 @@ function App() {
 
   return (
     <div className="app">
-      {/* Navbar */}
-      <header>
-        <h1>GlowSphere</h1>
-        <nav>
-          <ul>
-            <li><button onClick={() => navigate('/')}>Home</button></li>
-            <li><button onClick={() => navigate('/products')}>Products</button></li>
-            <li><button onClick={() => navigate('/cart')}>Cart</button></li>
-            <li><button onClick={() => navigate('/account')}>Account</button></li>
-          </ul>
-        </nav>
-      </header>
-
       {/* Hero Section */}
       <div className="hero-section">
         <div className="hero-text">
           <h1>
             Discover Your Natural <span className="highlight">Glow</span>
           </h1>
-          <p>
-            Experience luxury skincare with our premium collection of natural and effective products.
-          </p>
+          <p>Experience luxury skincare with our premium collection of natural and effective products.</p>
           <div className="button-group">
             <button onClick={() => navigate('/products')}>Shop Now</button>
             <button onClick={() => navigate('/products')}>Explore Categories</button>
@@ -99,7 +83,24 @@ function App() {
       {isModalOpen && (
         <div className="modal">
           <div className="modal-content">
-            <button className="close-button" onClick={closeModal}>
+            <button
+              className="close-button"
+              style={{
+                color: '#ffffff',
+                fontSize: '40px',
+                backgroundColor: '#770000',
+                border: 'none',
+                borderRadius: '0',
+                padding: '10px 20px',
+                display: 'flex',
+                justifyContent: 'center',
+                alignItems: 'center',
+                cursor: 'pointer',
+              }}
+              onMouseEnter={(e) => (e.target.style.backgroundColor = 'rgb(102, 0, 0)')}
+              onMouseLeave={(e) => (e.target.style.backgroundColor = '#770000')}
+              onClick={closeModal}
+            >
               &times;
             </button>
             <img src={modalData.image} alt={modalData.name} />
@@ -107,11 +108,137 @@ function App() {
             <p>{modalData.description}</p>
             <h4>{modalData.price}</h4>
             <button onClick={() => navigate('/checkout')}>Buy Now</button>
+            {/* Updated Links Section */}
+            <div style={{ marginTop: '10px' }}>
+              <a
+                href="/learn-more"
+                style={{ color: 'blue', textDecoration: 'underline', marginRight: '10px' }}
+              >
+                Learn More
+              </a>
+              <a
+                href="/contact-us"
+                style={{ color: 'blue', textDecoration: 'underline' }}
+              >
+                Contact Us
+              </a>
+            </div>
           </div>
         </div>
       )}
+
+      {/* Footer Section */}
+      <footer
+        style={{
+          backgroundColor: '#f8c9c9', 
+          color: 'white', 
+          textAlign: 'center', 
+          padding: '20px', 
+          marginTop: '20px',
+        }}
+      >
+        <div>
+          <h3>BEAUTYBAR</h3>
+          <p>WHERE BEAUTY COMES TOGETHER</p>
+        </div>
+
+        <div>
+          <h4>Contact</h4>
+          <p>Email: <a href="mailto:custserv@beautybar.com.ph" style={{ color: 'white' }}>custserv@beautybar.com.ph</a></p>
+          <p>Phone: <a href="tel:+63288305000" style={{ color: 'white' }}>(02) 8830 5000</a></p>
+        </div>
+
+        <div>
+  <h4>Navigation</h4>
+  <ul style={{ listStyle: 'none', padding: 0 }}>
+    <li>
+      <button
+        style={{
+          background: 'none',
+          border: 'none',
+          color: 'white',
+          textDecoration: 'underline',
+          cursor: 'pointer',
+        }}
+        onClick={() => console.log('Brands clicked')}
+      >
+        Brands
+      </button>
+    </li>
+    <li>
+      <button
+        style={{
+          background: 'none',
+          border: 'none',
+          color: 'white',
+          textDecoration: 'underline',
+          cursor: 'pointer',
+        }}
+        onClick={() => console.log('Makeup clicked')}
+      >
+        Makeup
+      </button>
+    </li>
+    <li>
+      <button
+        style={{
+          background: 'none',
+          border: 'none',
+          color: 'white',
+          textDecoration: 'underline',
+          cursor: 'pointer',
+        }}
+        onClick={() => console.log('Skincare clicked')}
+      >
+        Skincare
+      </button>
+    </li>
+    <li>
+      <button
+        style={{
+          background: 'none',
+          border: 'none',
+          color: 'white',
+          textDecoration: 'underline',
+          cursor: 'pointer',
+        }}
+        onClick={() => console.log('Hair clicked')}
+      >
+        Hair
+      </button>
+    </li>
+  </ul>
+</div>
+
+
+<div>
+      <h4>Follow Us</h4>
+      <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" style={{ margin: '5px' }}>
+        <FaFacebook style={{ color: '#4267B2', fontSize: '30px' }} />
+      </a>
+      <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" style={{ margin: '5px' }}>
+        <FaInstagram style={{ color: '#C13584', fontSize: '30px' }} />
+      </a>
+    </div>
+
+        <div>
+          <p>© 2024 Beauty Bar Philippines. All Rights Reserved.</p>
+        </div>
+
+        {/* Additional Footer Content */}
+        <p>&copy; 2024 Skincare Co. All rights reserved.</p>
+        <p>
+          <a href="/privacy-policy" style={{ color: '#fff', textDecoration: 'underline' }}>
+            Privacy Policy
+          </a>{' '}
+          |{' '}
+          <a href="/terms-of-service" style={{ color: '#fff', textDecoration: 'underline' }}>
+            Terms of Service
+          </a>
+        </p>
+      </footer>
     </div>
   );
-}
+};
 
 export default App;
