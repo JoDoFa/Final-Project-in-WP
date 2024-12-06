@@ -110,18 +110,6 @@ function App() {
             <button onClick={() => navigate('/checkout')}>Buy Now</button>
             {/* Updated Links Section */}
             <div style={{ marginTop: '10px' }}>
-              <a
-                href="/learn-more"
-                style={{ color: 'blue', textDecoration: 'underline', marginRight: '10px' }}
-              >
-                Learn More
-              </a>
-              <a
-                href="/contact-us"
-                style={{ color: 'blue', textDecoration: 'underline' }}
-              >
-                Contact Us
-              </a>
             </div>
           </div>
         </div>
