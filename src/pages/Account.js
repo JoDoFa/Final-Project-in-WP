@@ -1,139 +1,123 @@
 import React, { useState } from 'react';
 
-function Account() {
+const Account = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
-  const [accounts, setAccounts] = useState([]); // Store list of accounts
+  const [accounts, setAccounts] = useState([]);
+  const [error, setError] = useState('');
 
   const handleAddAccount = () => {
+    // Check if the username already exists
+    const usernameExists = accounts.some((acc) => acc.username === username);
+
     if (!username || !password) {
-      alert('Please fill in both username and password to add a new account.');
+      setError('Username and password cannot be empty.');
       return;
     }
 
-    // Check for duplicate usernames
-    if (accounts.some((account) => account.username === username)) {
-      alert('This username is already taken. Please choose a different one.');
+    if (usernameExists) {
+      setError('Username already exists. Please choose a different one.');
       return;
     }
 
-    // Add new account
-    const newAccount = { username, password };
-    setAccounts([...accounts, newAccount]);
-    alert(`Account created successfully! Username: ${username}`);
+    // Add account if username is unique
+    setAccounts([...accounts, { username, password }]);
     setUsername('');
     setPassword('');
-  };
-
-  const handleDeleteAccount = (accountUsername) => {
-    const updatedAccounts = accounts.filter(
-      (account) => account.username !== accountUsername
-    );
-    setAccounts(updatedAccounts);
-    alert(`Account with username "${accountUsername}" has been deleted.`);
+    setError(''); // Clear error message
   };
 
   const handleUpdate = () => {
-    if (!username || !password) {
-      alert('Please fill in both username and password to update the account.');
-      return;
-    }
-
-    // Check if account exists
-    const accountIndex = accounts.findIndex(
-      (account) => account.username === username
+    setAccounts((prevAccounts) =>
+      prevAccounts.map((acc) =>
+        acc.username === username ? { ...acc, password } : acc
+      )
     );
-
-    if (accountIndex === -1) {
-      alert('No account found with this username.');
-      return;
-    }
-
-    // Update account
-    const updatedAccounts = [...accounts];
-    updatedAccounts[accountIndex] = { username, password };
-    setAccounts(updatedAccounts);
-    alert('Account updated successfully!');
+    setError('');
   };
 
   const handleLogout = () => {
-    console.log('Logged out');
-    alert('You have been logged out.');
-    setUsername('');
-    setPassword('');
+    alert('Logged out successfully!');
+  };
+
+  const handleDeleteAccount = (usernameToDelete) => {
+    setAccounts(accounts.filter((acc) => acc.username !== usernameToDelete));
+    setError('');
   };
 
   return (
-    <div className="account-container">
-      <h2>
-        <i className="fa fa-user"></i> Manage Your Account
-      </h2>
-      <p>Update, delete, or log out of your account below.</p>
+    <div id="root">
+      <div className="account-container">
+        <div className="left-side">
+          <h2>
+            <i className="fa fa-user"></i> Manage Your Account
+          </h2>
+          <p>Update, delete, or log out of your account below.</p>
 
-      <div>
-        <label htmlFor="username">Username</label>
-        <input
-          type="text"
-          id="username"
-          value={username}
-          onChange={(e) => setUsername(e.target.value)}
-          placeholder="Enter your username"
-        />
-      </div>
+          <div>
+            <label htmlFor="username">Username</label>
+            <input
+              type="text"
+              id="username"
+              value={username}
+              onChange={(e) => setUsername(e.target.value)}
+              placeholder="Enter your username"
+            />
+          </div>
 
-      <div>
-        <label htmlFor="password">Password</label>
-        <input
-          type="password"
-          id="password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          placeholder="Enter your password"
-        />
-      </div>
+          <div>
+            <label htmlFor="password">Password</label>
+            <input
+              type="password"
+              id="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              placeholder="Enter your password"
+            />
+          </div>
 
-      <div className="button-group">
-        <button className="btn-primary" onClick={handleAddAccount}>
-          Add Account
-        </button>
-        <button className="btn-warning" onClick={handleUpdate}>
-          Update Account
-        </button>
-        <button className="btn-secondary" onClick={handleLogout}>
-          Log Out
-        </button>
-      </div>
+          {error && <p className="error-message">{error}</p>}
 
-      {/* Account List Section */}
-      <div className="account-list">
-        <h3>Existing Accounts</h3>
-        {accounts.length === 0 ? (
-          <p>No accounts available.</p>
-        ) : (
-          <ul>
-            {accounts.map((account) => (
-              <li key={account.username}>
-                <div className="account-info">
-                  <span>
+          <div className="button-group">
+            <button className="btn-primary" onClick={handleAddAccount}>
+              Add Account
+            </button>
+            <button className="btn-warning" onClick={handleUpdate}>
+              Update Account
+            </button>
+            <button className="btn-secondary" onClick={handleLogout}>
+              Log Out
+            </button>
+          </div>
+        </div>
+
+        <div className="right-side">
+          <h3>Existing Accounts</h3>
+          {accounts.length === 0 ? (
+            <p>No accounts available.</p>
+          ) : (
+            <ul>
+              {accounts.map((account) => (
+                <li key={account.username}>
+                  <div className="account-info">
                     <strong>Username:</strong> {account.username}
-                  </span>
-                </div>
-                <div className="delete-button-container">
-                  <button
-                    className="btn-danger"
-                    onClick={() => handleDeleteAccount(account.username)}
-                  >
-                    Delete
-                  </button>
-                </div>
-              </li>
-            ))}
-          </ul>
-        )}
+                  </div>
+                  <div className="delete-button-container">
+                    <button
+                      className="btn-danger"
+                      onClick={() => handleDeleteAccount(account.username)}
+                    >
+                      Delete
+                    </button>
+                  </div>
+                </li>
+              ))}
+            </ul>
+          )}
+        </div>
       </div>
     </div>
   );
-}
+};
 
 export default Account;
-  
