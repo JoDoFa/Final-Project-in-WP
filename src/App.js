@@ -6,7 +6,7 @@ import { CartProvider, CartContext } from './CartContext'; // Import CartContext
 
 // Component imports
 import Home from './pages/Home';
-import Products from './pages/Product';
+import Products from './pages/Products';
 import Cart from './pages/Cart';
 import Account from './pages/Account';
 import Checkout from './pages/Checkout';
