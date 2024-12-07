@@ -1,17 +1,30 @@
 import React, { useState } from 'react';
 
-
 const Account = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [accounts, setAccounts] = useState([]);
+  const [error, setError] = useState('');
 
   const handleAddAccount = () => {
-    if (username && password) {
-      setAccounts([...accounts, { username, password }]);
-      setUsername('');
-      setPassword('');
+    // Check if the username already exists
+    const usernameExists = accounts.some((acc) => acc.username === username);
+
+    if (!username || !password) {
+      setError('Username and password cannot be empty.');
+      return;
     }
+
+    if (usernameExists) {
+      setError('Username already exists. Please choose a different one.');
+      return;
+    }
+
+    // Add account if username is unique
+    setAccounts([...accounts, { username, password }]);
+    setUsername('');
+    setPassword('');
+    setError(''); // Clear error message
   };
 
   const handleUpdate = () => {
@@ -20,6 +33,7 @@ const Account = () => {
         acc.username === username ? { ...acc, password } : acc
       )
     );
+    setError('');
   };
 
   const handleLogout = () => {
@@ -28,6 +42,7 @@ const Account = () => {
 
   const handleDeleteAccount = (usernameToDelete) => {
     setAccounts(accounts.filter((acc) => acc.username !== usernameToDelete));
+    setError('');
   };
 
   return (
@@ -60,6 +75,8 @@ const Account = () => {
               placeholder="Enter your password"
             />
           </div>
+
+          {error && <p className="error-message">{error}</p>}
 
           <div className="button-group">
             <button className="btn-primary" onClick={handleAddAccount}>
