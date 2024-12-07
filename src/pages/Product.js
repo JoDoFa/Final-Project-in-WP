@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+
 
 // Products Categories
 const categories = [
@@ -146,18 +148,48 @@ const categories = [
 ];
 
 function Products() {
-  // State to track the selected product for the modal
+  // State for the selected product to show in the modal
   const [selectedProduct, setSelectedProduct] = useState(null);
+  const navigate = useNavigate();
 
-  // Function to handle View Details button click
+  // Function to show product details in the modal
   const handleViewDetails = (product) => {
-    setSelectedProduct(product); // Set the selected product
+    setSelectedProduct(product);
   };
 
-  // Function to close the modal
+  // Close the modal
   const closeModal = () => {
-    setSelectedProduct(null); // Reset the selected product
+    setSelectedProduct(null);
   };
+
+  // Function to handle Buy button click
+  const handleBuyClick = (product) => {
+    const orderNumber = new Date().getTime(); // Unique order number
+    const purchaseDate = new Date().toLocaleString(); // Purchase date and time
+
+    // Create an order object
+    const orderData = {
+      id: product.id,
+      name: product.name,
+      price: product.price,
+      image: product.image,
+      orderNumber: orderNumber,
+      date: purchaseDate
+    };
+
+    // Get the existing orders from localStorage or initialize an empty array
+    const existingOrders = JSON.parse(localStorage.getItem("purchasedProducts")) || [];
+    
+    // Add the new order to the array
+    existingOrders.push(orderData);
+
+    // Save the updated orders to localStorage
+    localStorage.setItem("purchasedProducts", JSON.stringify(existingOrders));
+
+    // Navigate to the Order History page
+    navigate("/orders");
+  };
+  
 
   return (
     <div className="products-container">
@@ -192,10 +224,16 @@ function Products() {
           <div className="modal-content" onClick={(e) => e.stopPropagation()}>
             <span className="close-btn" onClick={closeModal}>×</span>
             <h2>{selectedProduct.name}</h2>
-            <img src={selectedProduct.image} alt={selectedProduct.name} className="modal-product-image" />
+            <img
+              src={selectedProduct.image}
+              alt={selectedProduct.name}
+              className="modal-product-image"
+            />
             <p>{selectedProduct.description}</p>
             <p className="product-price">{selectedProduct.price}</p>
-            <button className="buy-btn">Buy</button>
+            <button className="buy-btn" onClick={() => handleBuyClick(selectedProduct)}>
+              Buy
+            </button>
           </div>
         </div>
       )}
