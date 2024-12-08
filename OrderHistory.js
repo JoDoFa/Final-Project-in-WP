@@ -8,8 +8,7 @@ function OrderHistory() {
   useEffect(() => {
     // Fetch the purchased products from localStorage
     const purchasedProducts = JSON.parse(localStorage.getItem("purchasedProducts")) || [];
-    
-    // Set the fetched products to the state
+    console.log("Orders from localStorage:", purchasedProducts); // Debugging line
     setOrders(purchasedProducts);
   }, []);
 
@@ -32,6 +31,18 @@ function OrderHistory() {
     return orderDateObj < currentDate ? "Delivered" : "Not Delivered";
   };
 
+  // Delete Order Function
+  const handleDeleteOrder = (orderNumber) => {
+    // Remove the order from the state
+    const updatedOrders = orders.filter(order => order.orderNumber !== orderNumber);
+    
+    // Update the state
+    setOrders(updatedOrders);
+    
+    // Update localStorage with the new list of orders
+    localStorage.setItem("purchasedProducts", JSON.stringify(updatedOrders));
+  };
+
   return (
     <div className="order-history-container">
       <h1>Order History</h1>
@@ -50,11 +61,16 @@ function OrderHistory() {
                 </div>
               </div>
               <button className="view-details-button" onClick={() => handleViewDetails(order)}>View Details</button>
+              {/* Delete Button */}
+              <button className="delete-button" onClick={() => handleDeleteOrder(order.orderNumber)}>Delete</button>
             </li>
           ))}
         </ul>
       ) : (
-        <p>No orders found.</p>
+        <div className="no-orders">
+          <h2>Welcome to our SSF Flair Shop!</h2>
+          <p>Discover our collection of premium skincare products!</p>
+        </div>
       )}
 
       {/* Modal for Order Details */}
@@ -63,9 +79,9 @@ function OrderHistory() {
           <div className="modal-content">
             <h2>Order Details</h2>
             <p><strong>Order Number:</strong> {selectedOrder.orderNumber}</p>
-            <p><strong>Quantity:</strong> {selectedOrder.quantity || 1}</p> {/* If no quantity, assume 1 */}
+            <p><strong>Quantity:</strong> {selectedOrder.quantity || 1}</p>
             <p><strong>Price:</strong> {selectedOrder.price}</p>
-            <p><strong>Status:</strong> {getStatus(selectedOrder.date)}</p> {/* Display status based on the date */}
+            <p><strong>Status:</strong> {getStatus(selectedOrder.date)}</p>
             <p><strong>Order Date:</strong> {selectedOrder.date}</p>
             <button className="close-modal-button" onClick={closeModal}>Close</button>
           </div>
