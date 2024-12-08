@@ -832,8 +832,6 @@ button:hover {
   transform: scale(1.05);
 }
 
-/* Quantity Styles */
-/* Quantity Styles on the Side */
 /* Quantity Styles on the Side */
 .quantity-container {
   display: flex;
@@ -841,30 +839,30 @@ button:hover {
   align-items: center;
   position: absolute;
   right: 20px; /* Keep it on the right side */
-  bottom: 40px; /* Adjust vertical position */
+  bottom: 80px; /* Increased to move it higher */
   width: auto;
-  max-width: 150px; /* Reduce max-width to make it more compact */
-  padding: 5px 0; /* Reduce padding */
+  max-width: 150px; /* Keep it compact */
+  padding: 5px 0; /* Padding to make it snug */
 }
 
 .quantity-container label {
-  font-size: 16px; /* Slightly smaller font size */
-  margin-right: 10px; /* Less space between label and input */
+  font-size: 16px;
+  margin-right: 10px;
   font-weight: bold;
   color: #333;
 }
 
 .quantity-container input {
-  width: 50px; /* Make the input field smaller */
-  padding: 8px 10px; /* Less padding */
+  width: 50px;
+  padding: 8px 10px;
   border-radius: 8px;
   border: 2px solid #ddd;
-  font-size: 16px; /* Slightly smaller font size */
+  font-size: 16px;
   text-align: center;
   transition: all 0.3s ease;
   background-color: #f9f9f9;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-  margin-right: 10px; /* Space between input and button */
+  margin-right: 10px;
 }
 
 .quantity-container input:focus {
@@ -877,10 +875,10 @@ button:hover {
 .quantity-container button {
   background-color: #007bff;
   color: white;
-  padding: 8px 12px; /* Smaller button size */
+  padding: 8px 12px;
   border: none;
   border-radius: 8px;
-  font-size: 14px; /* Smaller font size */
+  font-size: 14px;
   cursor: pointer;
   transition: all 0.3s ease;
 }
@@ -894,6 +892,8 @@ button:hover {
   outline: none;
   box-shadow: 0 0 8px rgba(0, 123, 255, 0.5);
 }
+
+
 
 
 /* Cart Component Styles */
@@ -1599,6 +1599,28 @@ body {
   font-weight: bold; /* Bold text on hover */
 }
 
+.delete-button {
+  background: linear-gradient(to right, #e53e3e, #c53030); /* Red gradient */
+  color: white;
+  padding: 12px 22px; /* Same size as View Details */
+  border: none;
+  border-radius: 25px; /* Same rounded pill shape */
+  font-size: 16px; /* Same font size */
+  cursor: pointer;
+  text-decoration: none;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.15); /* Subtle shadow */
+}
+
+.delete-button:hover {
+  transform: scale(1.1); /* Zoom effect on hover */
+  box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.2); /* Enhanced shadow */
+  background: linear-gradient(to right, #c53030, #9b2c2c); /* Darker red hover gradient */
+  letter-spacing: 1px; /* Add spacing for elegance */
+  font-weight: bold; /* Bold text on hover */
+}
+
+
 /* Align Items Neatly */
 .order-history-container li {
   display: flex;
@@ -1678,6 +1700,26 @@ body {
 .close-modal-button:hover {
   background-color: #d32f2f;
 }
+
+.no-orders {
+  background-color: #f0f8ff;
+  padding: 40px 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+.no-orders h2 {
+  font-size: 28px;
+  color: #2c3e50;
+  margin-bottom: 10px;
+}
+
+.no-orders p {
+  font-size: 18px;
+  color: #7f8c8d;
+}
+
 
 
 /* Open modal state (When visible) */
