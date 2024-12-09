@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 
+
 // Products Categories
 const categories = [
   {
@@ -150,16 +151,24 @@ const categories = [
 function Products() {
   // State for the selected product to show in the modal
   const [selectedProduct, setSelectedProduct] = useState(null);
+  const [quantity, setQuantity] = useState(1); // State to track quantity
   const navigate = useNavigate();
 
   // Function to show product details in the modal
   const handleViewDetails = (product) => {
     setSelectedProduct(product);
+    setQuantity(1); // Reset quantity to 1 when viewing a new product
   };
 
   // Close the modal
   const closeModal = () => {
     setSelectedProduct(null);
+  };
+
+  // Handle quantity change
+  const handleQuantityChange = (event) => {
+    const value = event.target.value;
+    setQuantity(value > 0 ? parseInt(value) : 1); // Ensure quantity is at least 1
   };
 
   // Function to handle Buy button click
@@ -174,7 +183,8 @@ function Products() {
       price: product.price,
       image: product.image,
       orderNumber: orderNumber,
-      date: purchaseDate
+      date: purchaseDate,
+      quantity: quantity,
     };
 
     // Get the existing orders from localStorage or initialize an empty array
@@ -231,6 +241,20 @@ function Products() {
             />
             <p>{selectedProduct.description}</p>
             <p className="product-price">{selectedProduct.price}</p>
+            
+            {/* Quantity input */}
+            <div className="quantity-container">
+              <label htmlFor="quantity">Quantity:</label>
+              <input
+                type="number"
+                id="quantity"
+                value={quantity}
+                onChange={handleQuantityChange}
+                min="1"
+                max="10"
+              />
+            </div>
+
             <button className="buy-btn" onClick={() => handleBuyClick(selectedProduct)}>
               Buy
             </button>
