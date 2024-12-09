@@ -18,7 +18,6 @@ function App() {
   const Navbar = () => {
     const { cart } = useContext(CartContext); // Access cart from CartContext
 
-
     return (
       <header className="App-header">
         <img src="https://www.creativefabrica.com/wp-content/uploads/2021/12/01/Skincare-Logo-Design-Graphics-21027211-1-1-580x387.png" alt="Logo" className="logo" />
@@ -57,7 +56,7 @@ function App() {
               <Route path="/checkout" element={<Checkout />} />
               <Route path="/login" element={<Login />} />
               <Route path="/register" element={<Register />} />
-              <Route path="/orders" element={<OrderHistory />} />
+              <Route path="/orders" element={<OrderHistory />} /> {/* Add OrderHistory route */}
             </Routes>
           </main>
         </div>
