@@ -1,20 +1,13 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useCart } from '../CartContext'; // Importing useCart
+import { FaFacebook, FaInstagram } from 'react-icons/fa';
 
-function App() {
+function Home() {
   const navigate = useNavigate();
+  const { addToCart } = useCart(); // Use the addToCart function from context
   const [modalData, setModalData] = useState(null); // State for modal content
   const [isModalOpen, setIsModalOpen] = useState(false); // State for modal visibility
-
-  const openModal = (product) => {
-    setModalData(product);
-    setIsModalOpen(true);
-  };
-
-  const closeModal = () => {
-    setIsModalOpen(false);
-    setModalData(null);
-  };
 
   const products = [
     {
@@ -40,29 +33,46 @@ function App() {
     },
   ];
 
-  return (
-    <div className="app">
-      {/* Hero Section */}
-      <div className="hero-section">
-        <div className="hero-text">
-          <h1>
-            Discover Your Natural <span className="highlight">Glow</span>
-          </h1>
-          <p>Experience luxury skincare with our premium collection of natural and effective products.</p>
-          <div className="button-group">
-            <button onClick={() => navigate('/products')}>Shop Now</button>
-            <button onClick={() => navigate('/products')}>Explore Categories</button>
-            <button onClick={() => navigate('/account')}>My Account</button>
+  const openModal = (product) => {
+    setModalData(product);
+    setIsModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setIsModalOpen(false);
+    setModalData(null);
+  };
+
+  // Handle the "Buy Now" button click to add product to cart
+  const handleBuyNow = (product) => {
+    addToCart(product);  // Add the product to the cart
+    closeModal();  // Close the modal after adding the product to the cart
+    navigate('/cart'); // Optionally, navigate to the cart page after adding the product
+  };
+
+    return (
+      <div className="app">
+        {/* Hero Section */}
+        <div className="hero-section">
+          <div className="hero-text">
+            <h1>
+              Discover Your Natural <span className="highlight">Glow</span>
+            </h1>
+            <p>Experience luxury skincare with our premium collection of natural and effective products.</p>
+            <div className="button-group">
+              <button onClick={() => navigate('/products')}>Shop Now</button>
+              <button onClick={() => navigate('/products')}>Explore Categories</button>
+              <button onClick={() => navigate('/account')}>My Account</button>
+            </div>
+          </div>
+          <div className="hero-image">
+            <img
+              src="https://cdn.shopify.com/s/files/1/0070/7032/articles/Start-a-Skincare-Line_Islenia-Mil_Email_68bb4b03-2c18-4f2c-9f11-81dce299083a.jpg?v=1730479484&originalWidth=1848&originalHeight=782&width=1400"
+              alt="Skincare line"
+            />
           </div>
         </div>
-        <div className="hero-image">
-          <img
-            src="https://cdn.shopify.com/s/files/1/0070/7032/articles/Start-a-Skincare-Line_Islenia-Mil_Email_68bb4b03-2c18-4f2c-9f11-81dce299083a.jpg?v=1730479484&originalWidth=1848&originalHeight=782&width=1400"
-            alt="Skincare line"
-          />
-        </div>
-      </div>
-
+    
       {/* Featured Products Section */}
       <div className="featured-products">
         <h2>Featured Skin Care Products</h2>
@@ -106,22 +116,8 @@ function App() {
             <h3>{modalData.name}</h3>
             <p>{modalData.description}</p>
             <h4>{modalData.price}</h4>
-            <button onClick={() => navigate('/checkout')}>Buy Now</button>
-            {/* Updated Links Section */}
-            <div style={{ marginTop: '10px' }}>
-              <a
-                href="/learn-more"
-                style={{ color: 'blue', textDecoration: 'underline', marginRight: '10px' }}
-              >
-                Learn More
-              </a>
-              <a
-                href="/contact-us"
-                style={{ color: 'blue', textDecoration: 'underline' }}
-              >
-                Contact Us
-              </a>
-            </div>
+            {/* Button to add the product to the cart */}
+            <button onClick={() => handleBuyNow(modalData)}>Buy Now</button>
           </div>
         </div>
       )}
@@ -129,99 +125,36 @@ function App() {
       {/* Footer Section */}
       <footer
         style={{
-          backgroundColor: '#f8c9c9', 
-          color: 'white', 
-          textAlign: 'center', 
-          padding: '20px', 
+          backgroundColor: '#f8c9c9',
+          color: 'white',
+          textAlign: 'center',
+          padding: '20px',
           marginTop: '20px',
         }}
       >
         <div>
-          <h3>BEAUTYBAR</h3>
+          <h3>SSF FLAIR</h3>
           <p>WHERE BEAUTY COMES TOGETHER</p>
         </div>
 
         <div>
           <h4>Contact</h4>
-          <p>Email: <a href="mailto:custserv@beautybar.com.ph" style={{ color: 'white' }}>custserv@beautybar.com.ph</a></p>
+          <p>Email: <a href="mailto:ssflair@philippines.com.ph" style={{ color: 'white' }}>ssflair@philippines.com.ph</a></p>
           <p>Phone: <a href="tel:+63288305000" style={{ color: 'white' }}>(02) 8830 5000</a></p>
         </div>
 
         <div>
-  <h4>Navigation</h4>
-  <ul style={{ listStyle: 'none', padding: 0 }}>
-    <li>
-      <button
-        style={{
-          background: 'none',
-          border: 'none',
-          color: 'white',
-          textDecoration: 'underline',
-          cursor: 'pointer',
-        }}
-        onClick={() => console.log('Brands clicked')}
-      >
-        Brands
-      </button>
-    </li>
-    <li>
-      <button
-        style={{
-          background: 'none',
-          border: 'none',
-          color: 'white',
-          textDecoration: 'underline',
-          cursor: 'pointer',
-        }}
-        onClick={() => console.log('Makeup clicked')}
-      >
-        Makeup
-      </button>
-    </li>
-    <li>
-      <button
-        style={{
-          background: 'none',
-          border: 'none',
-          color: 'white',
-          textDecoration: 'underline',
-          cursor: 'pointer',
-        }}
-        onClick={() => console.log('Skincare clicked')}
-      >
-        Skincare
-      </button>
-    </li>
-    <li>
-      <button
-        style={{
-          background: 'none',
-          border: 'none',
-          color: 'white',
-          textDecoration: 'underline',
-          cursor: 'pointer',
-        }}
-        onClick={() => console.log('Hair clicked')}
-      >
-        Hair
-      </button>
-    </li>
-  </ul>
-</div>
-
-
-        <div>
           <h4>Follow Us</h4>
-          <a href="https://facebook.com" target="_blank" rel="noopener noreferrer">
-            <img src="facebook-icon.png" alt="Facebook" style={{ width: '30px', margin: '5px' }} />
+          <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" style={{ margin: '5px' }}>
+            <FaFacebook style={{ color: '#4267B2', fontSize: '30px' }} />
           </a>
-          <a href="https://instagram.com" target="_blank" rel="noopener noreferrer">
-            <img src="instagram-icon.png" alt="Instagram" style={{ width: '30px', margin: '5px' }} />
+          <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" style={{ margin: '5px' }}>
+            <FaInstagram style={{ color: '#C13584', fontSize: '30px' }} />
           </a>
         </div>
 
         <div>
-          <p>© 2024 Beauty Bar Philippines. All Rights Reserved.</p>
+          <p>© 2024 SSF Flair Philippines. All Rights Reserved.</p>
         </div>
 
         {/* Additional Footer Content */}
@@ -238,6 +171,6 @@ function App() {
       </footer>
     </div>
   );
-};
+}
 
-export default App;
+export default Home;
