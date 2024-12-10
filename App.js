@@ -1,8 +1,8 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 import './App.css';
 import 'font-awesome/css/font-awesome.min.css';
-import { CartProvider, CartContext } from './CartContext'; // Import CartContext
+import { CartProvider, useCart } from './CartContext'; // Import useCart
 
 // Component imports
 import Home from './Pages/Home';
@@ -16,7 +16,7 @@ import OrderHistory from './Pages/OrderHistory';
 
 function App() {
   const Navbar = () => {
-    const { cart } = useContext(CartContext); // Access cart from CartContext
+    const { cart } = useCart(); // Use useCart to get cart state
 
     return (
       <header className="App-header">
