@@ -1,43 +1,65 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { useLocation } from 'react-router-dom';
 
-function Cart() {
+function Checkout() {
+  const location = useLocation();
+  const { selectedProducts, total } = location.state || { selectedProducts: [], total: 0 };
+
+  const [showModal, setShowModal] = useState(false); // State to control modal visibility
+
+  // Handle Place Order button click
+  const handlePlaceOrder = () => {
+    setShowModal(true); // Show the success modal when order is placed
+  };
+
   return (
-    <div className="cart-container">
-      <h2><i className="fa fa-shopping-cart"></i>Your Cart</h2>
-      <p>Review the items in your cart before checkout.</p>
+    <div className="checkout-container">
+      <h2>Checkout</h2>
+      <div className="order-summary">
+        <h3>Order Summary</h3>
+        {selectedProducts.length > 0 ? (
+          selectedProducts.map((product, index) => {
+            if (product && product.image && product.name && product.price) {
+              return (
+                <div key={index} className="order-item">
+                  <img src={product.image} alt={product.name} className="order-item-image" />
+                  <div className="order-item-details">
+                    <h4>{product.name}</h4>
+                    <p>Price: ${parseFloat(product.price).toFixed(2)}</p>
+                    <p>Quantity: {product.quantity}</p>
+                  </div>
+                </div>
+              );
+            }
+            return null;
+          })
+        ) : (
+          <p>No items selected.</p>
+        )}
+        <p><strong>Total:</strong> ${total.toFixed(2)}</p>
+      </div>
 
-      {/* Cart Items */}
-      <div className="cart-items-container">
-        <div className="cart-item">
-          <h3>Product 1</h3>
-          <p>$10.00</p>
-          <button>Remove</button>
+      <div className="place-order">
+        <button className="place-order-button" onClick={handlePlaceOrder}>
+          Place Order
+        </button>
+      </div>
+
+      {/* Modal for Order Success */}
+      {showModal && (
+        <div className="modal-overlay">
+          <div className="modal-content show">
+            <i className="fa fa-check-circle verified-icon"></i>
+            <h3>Order Successful!</h3>
+            <p>Your order has been placed successfully.</p>
+            <button className="close-modal" onClick={() => setShowModal(false)}>
+              Close
+            </button>
+          </div>
         </div>
-        <div className="cart-item">
-          <h3>Product 2</h3>
-          <p>$20.00</p>
-          <button>Remove</button>
-        </div>
-      </div>
-
-      {/* Cart Summary */}
-      <div className="cart-summary">
-        <h3>Summary</h3>
-        <p>Total: $30.00</p>
-      </div>
-
-      {/* Cart Buttons */}
-      <div className="cart-buttons-container">
-        <button className="proceed-btn">Proceed to Checkout</button>
-        <button className="clear-cart-btn">Clear Cart</button>
-      </div>
-
-      {/* Empty Cart Message */}
-      <div className="cart-empty-message">
-        <p>Your cart is empty!</p>
-      </div>
+      )}
     </div>
   );
 }
 
-export default Cart;
+export default Checkout;
