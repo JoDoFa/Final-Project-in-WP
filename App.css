@@ -294,6 +294,7 @@ body, html {
   opacity: 0.8; /* Slight opacity on hover */
 }
 
+
 /* Hero Section */
 .hero-section {
   position: relative;
@@ -893,226 +894,176 @@ button:hover {
   box-shadow: 0 0 8px rgba(0, 123, 255, 0.5);
 }
 
-
-
-
-/* Cart Component Styles */
 /* Container for the entire cart page */
+/* Cart Container */
 .cart-container {
-  width: 100%;
-  max-width: 900px;
-  margin: 0 auto;
-  padding: 40px;
-  background-color: #ffffff;
-  border-radius: 20px;
-  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.1);
-  font-family: 'Lora', serif;
-  background: linear-gradient(135deg, #f0f0f0 0%, #fafafa 100%);
-  transform: scale(1);
-  transition: transform 0.3s ease;
+  max-width: 1200px;
+  margin: 20px auto;
+  padding: 20px;
+  background-color: #f8f9fa;
+  border-radius: 10px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
 }
 
-.cart-container:hover {
-  transform: scale(1.02); /* Gentle zoom effect on hover */
-}
-
-/* Cart Page Title */
+/* Cart Title */
 .cart-container h2 {
+  font-size: 28px;
+  color: #333;
   text-align: center;
-  font-size: 3rem;
-  color: #2c3e50;
   margin-bottom: 30px;
-  font-weight: 700;
-  letter-spacing: 1px;
-  text-transform: uppercase;
-  transition: color 0.3s ease, transform 0.3s ease;
 }
 
-.cart-container h2:hover {
-  color: #8e44ad; /* Purple hover effect */
-  transform: translateY(-5px); /* Subtle lift on hover */
+/* Cart Items */
+.cart-items {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
 }
 
-/* Paragraph text for instructions or descriptions */
-.cart-container p {
-  text-align: center;
-  font-size: 1.1rem;
-  color: #7f8c8d;
-  margin-bottom: 40px;
-  font-weight: 400;
-  opacity: 0.85;
-  transition: opacity 0.3s ease;
-}
-
-.cart-container p:hover {
-  opacity: 1; /* Subtle emphasis on hover */
-}
-
-/* Cart items container with soft, subtle borders */
-.cart-items-container {
-  margin-bottom: 40px;
-  padding-bottom: 20px;
-  border-bottom: 1px solid #e4e4e4;
-}
-
-/* Individual Cart Item Style */
+/* Individual Cart Item */
 .cart-item {
   display: flex;
-  justify-content: space-between;
   align-items: center;
-  padding: 20px 0;
-  border-bottom: 1px solid #e6e6e6;
-  transition: background-color 0.3s ease, transform 0.3s ease;
+  justify-content: space-between;
+  padding: 15px;
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s ease-in-out;
 }
 
 .cart-item:hover {
-  background-color: #f9f9f9;
-  transform: translateX(5px); /* Subtle slide effect for hover */
+  transform: translateY(-5px);
 }
 
-.cart-item h3 {
-  font-size: 1.6rem;
-  color: #34495e;
-  font-weight: 500;
-  transition: color 0.3s ease;
+.cart-item-image {
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+  border-radius: 8px;
 }
 
-.cart-item h3:hover {
-  color: #8e44ad; /* Change color to match theme */
+.cart-item-details {
+  flex-grow: 1;
+  margin-left: 15px;
 }
 
-.cart-item p {
-  font-size: 1.2rem;
-  color: #7f8c8d;
+.cart-item-details h3 {
+  font-size: 20px;
+  color: #333;
+  margin-bottom: 5px;
 }
 
-.cart-item button {
-  padding: 12px 22px;
-  background-color: #8e44ad;
-  color: #fff;
-  border: none;
-  border-radius: 12px;
-  font-size: 1.1rem;
-  cursor: pointer;
-  transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+.cart-item-details p {
+  font-size: 16px;
+  color: #555;
 }
 
-.cart-item button:hover {
-  background-color: #013144;
-  transform: scale(1.05);
-  box-shadow: 0 5px 25px rgba(0, 0, 0, 0.15);
-  transition: all 0.3s ease;
-}
-
-/* Cart Summary Section */
-.cart-summary {
+/* Cart Item Actions */
+.cart-item-actions {
   display: flex;
-  justify-content: space-between;
   align-items: center;
-  margin-top: 40px;
-  border-top: 2px solid #e0e0e0;
-  padding-top: 20px;
-  transition: transform 0.3s ease;
+  gap: 10px;
 }
 
-.cart-summary:hover {
-  transform: translateY(-5px); /* Smooth lift for summary */
+.cart-item-actions input {
+  transform: scale(1.2);
 }
 
-.cart-summary h3 {
-  font-size: 2rem;
-  color: #2c3e50;
-  font-weight: 600;
+.remove-button {
+  background-color: #e74c3c;
+  color: white;
+  padding: 8px 12px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.remove-button:hover {
+  background-color: #c0392b;
+}
+
+/* Cart Summary */
+.cart-summary {
+  padding: 15px;
+  background-color: #f1f1f1;
+  border-radius: 8px;
+  margin-top: 30px;
+  text-align: center;
 }
 
 .cart-summary p {
-  font-size: 1.5rem;
-  color: #7f8c8d;
-  font-weight: 500;
+  font-size: 18px;
+  font-weight: bold;
+  color: #333;
 }
 
-/* Buttons container at the bottom of the cart */
-.cart-buttons-container {
+/* Cart Actions */
+.cart-actions {
   display: flex;
   justify-content: space-between;
-  margin-top: 50px;
+  margin-top: 30px;
 }
 
-.cart-buttons-container button {
-  padding: 18px 30px;
-  font-size: 1.2rem;
-  font-weight: 600;
-  border-radius: 12px;
-  cursor: pointer;
-  transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
-  width: 48%;
+.checkout-button,
+.clear-cart-button {
+  padding: 12px 20px;
+  font-size: 16px;
+  font-weight: bold;
   border: none;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  width: 48%;
 }
 
-.proceed-btn {
-  background-color: #3498db;
-  color: #fff;
+.checkout-button {
+  background-color: #28a745;
+  color: white;
 }
 
-.proceed-btn:hover {
-  background-color: #2980b9;
-  transform: scale(1.05);
-  box-shadow: 0 5px 25px rgba(0, 0, 0, 0.15);
+.checkout-button:hover {
+  background-color: #218838;
 }
 
-.clear-cart-btn {
-  background-color: #95a5a6;
-  color: #fff;
+.checkout-button:disabled {
+  background-color: #d6e9d6;
+  cursor: not-allowed;
 }
 
-.clear-cart-btn:hover {
-  background-color: #7f8c8d;
-  transform: scale(1.05);
-  box-shadow: 0 5px 25px rgba(0, 0, 0, 0.15);
+.clear-cart-button {
+  background-color: #f39c12;
+  color: white;
 }
 
-/* Empty Cart Message */
-.cart-empty-message {
-  text-align: center;
-  padding: 40px 0;
-  display: none;
+.clear-cart-button:hover {
+  background-color: #e67e22;
 }
 
-.cart-empty-message p {
-  font-size: 1.8rem;
-  color: #e74c3c;
-  font-weight: 600;
-  text-transform: uppercase;
-}
-
-/* Show empty cart message if cart is empty */
-.cart-items-container.empty-cart + .cart-empty-message {
-  display: block;
+.clear-cart-button:disabled {
+  background-color: #f4d03f;
+  cursor: not-allowed;
 }
 
 /* Responsive Design */
 @media (max-width: 768px) {
-  .cart-container {
-    padding: 20px;
+  .cart-items {
+    gap: 15px;
   }
 
-  .cart-items-container {
-    margin-bottom: 20px;
+  .cart-item {
+    flex-direction: column;
+    align-items: flex-start;
   }
 
-  .cart-item h3 {
-    font-size: 1.4rem;
+  .cart-item-actions {
+    margin-top: 10px;
   }
 
-  .cart-summary h3, .cart-summary p {
-    font-size: 1.4rem;
-  }
-
-  .cart-buttons-container button {
-    font-size: 1rem;
-    padding: 12px 20px;
+  .cart-actions {
+    flex-direction: column;
+    gap: 15px;
   }
 }
 
@@ -1744,3 +1695,244 @@ body {
 .product-card:hover {
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
+
+/* Checkout Container */
+/* Checkout Styles */
+/* Checkout Container */
+.checkout-container {
+  padding: 30px;
+  max-width: 800px;
+  margin: 50px auto;
+  background: #ffffff;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+}
+
+h2 {
+  font-size: 28px;
+  margin-bottom: 20px;
+  text-align: center;
+  color: #333;
+}
+
+.order-summary {
+  margin-bottom: 30px;
+}
+
+.order-item {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+  padding: 10px;
+  border: 1px solid #e2e2e2;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+}
+
+.order-item:hover {
+  background-color: #f8f8f8;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.order-item-image {
+  width: 70px;
+  height: 70px;
+  object-fit: cover;
+  margin-right: 20px;
+  border-radius: 8px;
+}
+
+.order-item-details {
+  flex-grow: 1;
+}
+
+.order-item-details h4 {
+  font-size: 18px;
+  color: #555;
+  margin-bottom: 5px;
+}
+
+.order-item-details p {
+  font-size: 14px;
+  color: #777;
+}
+
+
+
+/* Place Order Button */
+/* Enhanced Place Order Button */
+.place-order-button {
+  background: linear-gradient(145deg, #28a745, #218838); /* Green gradient */
+  color: white;
+  padding: 16px 40px;
+  border: none;
+  cursor: pointer;
+  font-size: 20px;
+  font-weight: bold;
+  border-radius: 50px; /* Rounded edges for a modern look */
+  transition: all 0.3s ease;
+  width: 100%;
+  text-align: center;
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+}
+
+.place-order-button:hover {
+  background: linear-gradient(145deg, #218838, #28a745); /* Reversed gradient on hover */
+  transform: translateY(-5px); /* Lift effect */
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+}
+
+.place-order-button:active {
+  transform: translateY(0); /* Return to original position when clicked */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Modal Overlay */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.6); /* Dark background with some transparency */
+  display: flex;
+  justify-content: center; /* Centers horizontally */
+  align-items: center; /* Centers vertically */
+  z-index: 1000;
+  transition: opacity 0.3s ease-in-out;
+}
+
+/* Enhanced Modal Content */
+.modal-content {
+  background-color: #fff;
+  padding: 40px 30px;
+  text-align: center;
+  border-radius: 20px; /* Rounded corners for a smoother look */
+  width: 80%;
+  max-width: 600px;
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.2);
+  animation: fadeIn 0.5s ease-out;
+  transform: scale(0.95);
+  transition: transform 0.3s ease-in-out;
+}
+
+.modal-content.show {
+  transform: scale(1); /* Scale up the modal smoothly */
+}
+
+/* Modal Header */
+.modal-content h3 {
+  font-size: 32px;
+  color: #28a745; /* Green color for success */
+  margin-bottom: 20px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  animation: slideIn 0.5s ease-out;
+}
+
+/* Verified Icon */
+.verified-icon {
+  font-size: 70px; /* Make the icon large enough to be noticeable */
+  color: #28a745; /* Green color for verified */
+  margin-bottom: 20px;
+  animation: pulseGlow 1.5s infinite ease-in-out; /* Add pulsing and glowing effect */
+  text-shadow: 0 0 8px rgba(40, 167, 69, 0.6), 0 0 20px rgba(40, 167, 69, 0.5), 0 0 30px rgba(40, 167, 69, 0.4); /* Glow effect */
+}
+
+
+
+/* Modal Body */
+.modal-content p {
+  font-size: 20px;
+  margin-bottom: 30px;
+  color: #333;
+  line-height: 1.6;
+  animation: fadeInText 0.6s ease-out;
+  font-weight: bold;
+  letter-spacing: 0.5px;
+}
+
+/* Close Modal Button */
+.close-modal {
+  background-color: #dc3545; /* Red background */
+  color: white;
+  padding: 14px 30px;
+  border: none;
+  cursor: pointer;
+  font-size: 18px;
+  font-weight: bold;
+  border-radius: 50px;
+  transition: all 0.3s ease;
+  width: 100%;
+}
+
+.close-modal:hover {
+  background-color: #c82333;
+  transform: scale(1.05); /* Slight scale-up effect */
+}
+
+.close-modal:active {
+  background-color: #bd2130;
+  transform: scale(0.95); /* Slight scale-down effect when clicked */
+}
+
+/* Modal Fade-in Animation */
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Slide In Header Animation */
+@keyframes slideIn {
+  0% {
+    transform: translateY(-30px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+/* Fade-in Text Animation */
+@keyframes fadeInText {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+/* Pulse and Glow Animation */
+@keyframes pulseGlow {
+  0% {
+    transform: scale(1); /* Start at normal size */
+    opacity: 1;
+    text-shadow: 0 0 8px rgba(40, 167, 69, 0.6), 0 0 20px rgba(40, 167, 69, 0.5), 0 0 30px rgba(40, 167, 69, 0.4);
+  }
+  50% {
+    transform: scale(1.2); /* Increase size slightly */
+    opacity: 0.8;
+    text-shadow: 0 0 15px rgba(40, 167, 69, 1), 0 0 30px rgba(40, 167, 69, 0.8), 0 0 45px rgba(40, 167, 69, 0.6); /* Intense glow */
+  }
+  100% {
+    transform: scale(1); /* Return to normal size */
+    opacity: 1;
+    text-shadow: 0 0 8px rgba(40, 167, 69, 0.6), 0 0 20px rgba(40, 167, 69, 0.5), 0 0 30px rgba(40, 167, 69, 0.4); /* Normal glow */
+  }
+}
+
+/* Optional: Hover effect */
+.verified-icon:hover {
+  transform: rotate(15deg); /* Slight rotation on hover */
+}
+
+
+
+
