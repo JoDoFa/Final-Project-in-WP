@@ -126,77 +126,15 @@ function App() {
         }}
       >
         <div>
-          <h3>BEAUTYBAR</h3>
+          <h3>SSF FLAIR</h3>
           <p>WHERE BEAUTY COMES TOGETHER</p>
         </div>
 
         <div>
           <h4>Contact</h4>
-          <p>Email: <a href="mailto:custserv@beautybar.com.ph" style={{ color: 'white' }}>custserv@beautybar.com.ph</a></p>
+          <p>Email: <a href="mailto:ssflair@philippines.com.ph" style={{ color: 'white' }}>ssflair@philippines.com.ph</a></p>
           <p>Phone: <a href="tel:+63288305000" style={{ color: 'white' }}>(02) 8830 5000</a></p>
         </div>
-
-        <div>
-  <h4>Navigation</h4>
-  <ul style={{ listStyle: 'none', padding: 0 }}>
-    <li>
-      <button
-        style={{
-          background: 'none',
-          border: 'none',
-          color: 'white',
-          textDecoration: 'underline',
-          cursor: 'pointer',
-        }}
-        onClick={() => console.log('Brands clicked')}
-      >
-        Brands
-      </button>
-    </li>
-    <li>
-      <button
-        style={{
-          background: 'none',
-          border: 'none',
-          color: 'white',
-          textDecoration: 'underline',
-          cursor: 'pointer',
-        }}
-        onClick={() => console.log('Makeup clicked')}
-      >
-        Makeup
-      </button>
-    </li>
-    <li>
-      <button
-        style={{
-          background: 'none',
-          border: 'none',
-          color: 'white',
-          textDecoration: 'underline',
-          cursor: 'pointer',
-        }}
-        onClick={() => console.log('Skincare clicked')}
-      >
-        Skincare
-      </button>
-    </li>
-    <li>
-      <button
-        style={{
-          background: 'none',
-          border: 'none',
-          color: 'white',
-          textDecoration: 'underline',
-          cursor: 'pointer',
-        }}
-        onClick={() => console.log('Hair clicked')}
-      >
-        Hair
-      </button>
-    </li>
-  </ul>
-</div>
 
 
 <div>
@@ -210,7 +148,7 @@ function App() {
     </div>
 
         <div>
-          <p>© 2024 Beauty Bar Philippines. All Rights Reserved.</p>
+          <p>© 2024 SSF Flair Philippines. All Rights Reserved.</p>
         </div>
 
         {/* Additional Footer Content */}
