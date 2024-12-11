@@ -16,7 +16,7 @@ const Account = () => {
     }
 
     if (usernameExists) {
-      setError('Username already exists. Please choose a different one.');
+      setError('Username and password already exists. Please choose a different one.');
       return;
     }
 
