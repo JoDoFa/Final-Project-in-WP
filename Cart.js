@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useCallback } from 'react';
-import { useCart } from '../CartContext';
-import { useNavigate } from 'react-router-dom'; // Import useNavigate
+import { useCart } from './CartContext';
+import { useNavigate } from 'react-router-dom';
 
 function Cart() {
   const { cart, removeFromCart, clearCart } = useCart();
@@ -11,17 +11,15 @@ function Cart() {
   // Load selected items from localStorage when the component mounts
   useEffect(() => {
     const savedSelectedItems = JSON.parse(localStorage.getItem('selectedItems')) || [];
-    console.log('Loaded selected items from localStorage:', savedSelectedItems); // Debugging log
-    setSelectedItems(savedSelectedItems); // Initialize selected items with stored data
+    setSelectedItems(savedSelectedItems);
   }, []);
 
   // Save selectedItems to localStorage every time it changes
   useEffect(() => {
     if (selectedItems.length > 0) {
-      console.log('Saving selected items to localStorage:', selectedItems); // Debugging log
-      localStorage.setItem('selectedItems', JSON.stringify(selectedItems)); // Save selected items to localStorage
+      localStorage.setItem('selectedItems', JSON.stringify(selectedItems));
     }
-  }, [selectedItems]); // This effect runs whenever selectedItems state changes
+  }, [selectedItems]);
 
   // Calculate total price of selected items
   const calculateTotal = useCallback(() => {
@@ -30,23 +28,21 @@ function Cart() {
       .filter(Boolean); // Filter out any null or undefined values
 
     const newTotal = selected.reduce(
-      (sum, item) => sum + (parseFloat(item.price) || 0) * item.quantity,
+      (sum, item) =>
+        sum + (parseFloat(item?.price) || 0) * (item?.quantity || 1), // Handle invalid price or quantity
       0
     );
 
-    setTotal(newTotal); // Update the total state
-  }, [cart, selectedItems]); // Recalculate when cart or selectedItems change
+    setTotal(newTotal);
+  }, [cart, selectedItems]);
 
   // Handle item selection (checkbox toggle)
   const handleSelectItem = (index) => {
-    setSelectedItems((prevSelectedItems) => {
-      const updatedSelectedItems = prevSelectedItems.includes(index)
+    setSelectedItems((prevSelectedItems) =>
+      prevSelectedItems.includes(index)
         ? prevSelectedItems.filter((i) => i !== index) // Deselect the item
-        : [...prevSelectedItems, index]; // Select the item
-
-      console.log('Updated selected items:', updatedSelectedItems); // Debugging log
-      return updatedSelectedItems;
-    });
+        : [...prevSelectedItems, index] // Select the item
+    );
   };
 
   // Recalculate total whenever cart or selectedItems changes
@@ -56,8 +52,8 @@ function Cart() {
 
   // Handle checkout action
   const handleCheckout = () => {
-    const selectedProducts = selectedItems.map((i) => cart[i]); // Get selected products
-    navigate('/checkout', { state: { selectedProducts, total } }); // Navigate to checkout
+    const selectedProducts = selectedItems.map((i) => cart[i]);
+    navigate('/checkout', { state: { selectedProducts, total } });
   };
 
   return (
@@ -70,18 +66,18 @@ function Cart() {
               <img src={item.image} alt={item.name} className="cart-item-image" />
               <div className="cart-item-details">
                 <h3>{item.name}</h3>
-                <p>${parseFloat(item.price).toFixed(2)}</p>
+                <p>${parseFloat(item?.price) ? parseFloat(item?.price).toFixed(2) : '0.00'}</p>
                 <p>Quantity: {item.quantity}</p>
               </div>
               <div className="cart-item-actions">
                 <input
                   type="checkbox"
-                  checked={selectedItems.includes(index)} // Check if item is selected
-                  onChange={() => handleSelectItem(index)} // Toggle selection
+                  checked={selectedItems.includes(index)}
+                  onChange={() => handleSelectItem(index)}
                 />
                 <button
                   className="remove-button"
-                  onClick={() => removeFromCart(index)} // Remove item from cart
+                  onClick={() => removeFromCart(index)}
                 >
                   ✖
                 </button>
@@ -105,7 +101,7 @@ function Cart() {
         <button
           className="checkout-button"
           onClick={handleCheckout}
-          disabled={selectedItems.length === 0} // Disable checkout if no items are selected
+          disabled={selectedItems.length === 0}
         >
           Checkout Selected Items
         </button>
@@ -116,5 +112,4 @@ function Cart() {
     </div>
   );
 }
-
-export default Cart;
+export default Cart; 
