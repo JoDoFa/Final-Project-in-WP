@@ -2,7 +2,7 @@ import React from 'react';
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 import './App.css';
 import 'font-awesome/css/font-awesome.min.css';
-import { CartProvider, useCart } from './CartContext'; // Import useCart
+import { CartProvider, useCart } from './Pages/CartContext'; // Import useCart
 
 // Component imports
 import Home from './Pages/Home';
@@ -29,8 +29,8 @@ function App() {
             <li>
               <Link to="/cart">
                 Cart
-                {cart.length > 0 && ( // Show badge if cart is not empty
-                  <span className="cart-badge">{cart.length}</span>
+                {cart.length > 0 && (
+                <span className={`cart-badge ${cart.length === 0 ? 'fade' : ''}`}>{cart.length}</span>
                 )}
               </Link>
             </li>
