@@ -18,7 +18,7 @@ body {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  background: linear-gradient(to right, #0074D9, #00b8a9); /* Fresh green-to-blue gradient */
+  background: linear-gradient(to right, #f06292, #76c7d1, #00374d); /* Pink to Blue to Green gradient */
   color: #ffffff;
   padding: 16px 32px;
   box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15); /* Softer shadow */
@@ -26,6 +26,7 @@ body {
   z-index: 1;
   font-family: 'Playfair Display', serif; /* Luxurious font */
 }
+
 
 .App-header .logo {
   width: 50px;
@@ -130,49 +131,60 @@ header, main, footer {
 
 /* Footer Styles */
 footer {
-  background-color: #f8c9c9;
+  background: linear-gradient(135deg, #f8c9c9 0%, #f8a9a9 100%);
   color: white;
   text-align: center;
-  padding: 40px 20px;
+  padding: 60px 30px;
+  font-family: 'Arial', sans-serif;
 }
 
 footer h3 {
-  font-size: 2rem;
-  margin-bottom: 10px;
+  font-size: 2.2rem;
+  font-weight: 700;
+  margin-bottom: 15px;
+  letter-spacing: 1px;
 }
 
 footer p {
   font-size: 1rem;
-  margin: 5px 0;
+  margin: 8px 0;
+  font-style: italic;
 }
 
 footer a {
   color: white;
-  text-decoration: underline;
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.3s ease;
+}
+
+footer a:hover {
+  color: #f8a9a9;
 }
 
 footer .social-media a {
-  margin: 0 10px;
+  margin: 0 15px;
 }
 
 footer .social-media img {
-  width: 30px;
-  height: 30px;
+  width: 35px;
+  height: 35px;
+  transition: transform 0.3s ease;
 }
 
-footer .social-media a:hover {
-  opacity: 0.7;
+footer .social-media a:hover img {
+  transform: scale(1.1);
 }
 
 footer ul {
   list-style: none;
   padding: 0;
-  margin: 20px 0;
+  margin: 30px 0;
 }
 
 footer ul li {
   display: inline-block;
-  margin: 0 10px;
+  margin: 0 15px;
 }
 
 footer ul li button {
@@ -180,15 +192,31 @@ footer ul li button {
   border: none;
   color: white;
   text-decoration: underline;
+  font-size: 1rem;
   cursor: pointer;
+  transition: text-decoration 0.3s ease;
 }
 
 footer ul li button:hover {
   text-decoration: none;
 }
 
+footer ul li button:focus {
+  outline: none;
+}
 
+footer .copyright {
+  font-size: 0.9rem;
+  color: rgba(255, 255, 255, 0.7);
+  margin-top: 20px;
+}
 
+footer .contact-info {
+  font-size: 1rem;
+  margin-top: 10px;
+}
+
+/* Full-Screen Background */
 /* Full-Screen Background */
 body::before {
   content: "";
@@ -198,7 +226,7 @@ body::before {
   width: 100%;
   height: 100%;
   background: 
-    linear-gradient(to right, hsl(0, 0%, 100%), hsl(182, 65%, 41%)); /* Gradient background */
+    linear-gradient(to right, #ffffff, #f8a1c2, #00374d); /* White to Light Pink to Light Green */
   z-index: -1; /* Keep behind content */
 }
 
@@ -264,6 +292,29 @@ body, html {
   color: #02302c; /* Teal color on hover */
   opacity: 0.8; /* Slight opacity on hover */
 }
+
+.cart-badge {
+  position: absolute;
+  top: -5px;
+  right: -5px;
+  background-color: red;
+  color: white;
+  border-radius: 50%;
+  padding: 6px 8px;
+  font-size: 14px;
+  font-weight: bold;
+  min-width: 20px;
+  text-align: center;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); /* Soft shadow to lift the badge */
+  transition: transform 0.3s ease, opacity 0.3s ease; /* Smooth transition for animations */
+}
+
+.cart-badge.fade {
+  opacity: 0; /* Makes the badge fade if cart is empty */
+  transform: scale(0); /* Shrinks the badge */
+}
+
+
 
 /* Hero Section */
 .hero-section {
@@ -402,6 +453,26 @@ body, html {
   color: #004d40;
   margin-bottom: 30px;
 }
+
+.quantity-selector {
+  display: flex;
+  align-items: center;
+  margin-top: 10px;
+}
+
+.quantity-selector button {
+  background-color: #f8c9c9;
+  border: none;
+  font-size: 20px;
+  padding: 5px;
+  cursor: pointer;
+}
+
+.quantity-selector span {
+  font-size: 18px;
+  margin: 0 10px;
+}
+
 
 .product-cards {
   display: flex;
@@ -722,7 +793,7 @@ button:hover {
   background-color: #228b46;
 }
 
-/* Modals*/
+/* Modals */
 .modal {
   position: fixed;
   top: 0;
@@ -739,20 +810,25 @@ button:hover {
 /* Modal content box */
 .modal-content {
   background-color: white;
-  padding: 30px;
+  padding: 50px; /* Increased padding for more internal space */
   border-radius: 15px;
   max-width: 600px;
   width: 90%;
   text-align: center;
   position: relative;
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3); /* Premium modal shadow */
+  min-height: 400px; /* Set a minimum height to ensure space for content */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
+/* Modal Product Image */
 .modal-product-image {
   width: 100%;
   height: auto;
   border-radius: 15px;
-  margin-bottom: 20px;
+  margin-bottom: 20px; /* Space below the image */
 }
 
 /* Close Button */
@@ -760,16 +836,16 @@ button:hover {
   position: absolute;
   top: 15px;
   right: 15px;
-  font-size: 40px;  /* Increase the size of the 'X' */
+  font-size: 40px;
   cursor: pointer;
   color: #000;
   background: none;
   border: none;
-  width: 30px;  /* Slightly wider button */
-  height: 30px; /* Adjust height to maintain symmetry */
-  padding: 0;  /* Remove default padding */
-  text-align: center;  /* Center the 'X' symbol */
-  border-radius: 50%; /* Keep it round */
+  width: 30px;
+  height: 30px;
+  padding: 0;
+  text-align: center;
+  border-radius: 50%;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -779,9 +855,9 @@ button:hover {
   color: rgb(102, 0, 0);
 }
 
-
+/* Buy Button */
 .buy-btn {
-  margin-top: 20px;
+  margin-top: 30px; /* Added more space from the quantity input */
   padding: 15px 25px;
   background-color: #2d9e5e;
   color: white;
@@ -798,249 +874,247 @@ button:hover {
   transform: scale(1.05);
 }
 
-/*Close-Button Modal of Home.js*/
-.close-button {
-  all: unset; 
-  position: absolute;
-  top: 15px;
-  right: 15px;
-  font-size: 40px;
-  color: #770000;
-  width: 30px;
-  height: 30px;
-  text-align: center;
-  border-radius: 50%;
+/* Quantity Styles on the Side */
+.quantity-container {
   display: flex;
   justify-content: center;
   align-items: center;
+  position: absolute;
+  right: 20px; /* Keep it on the right side */
+  bottom: 80px; /* Increased to move it higher */
+  width: auto;
+  max-width: 150px; /* Keep it compact */
+  padding: 5px 0; /* Padding to make it snug */
+}
+
+.quantity-container button {
+  background-color: #f8c9c9;
+  border: 2px solid #ddd;
+  font-size: 18px;
+  padding: 8px 10px;
+  border-radius: 8px;
   cursor: pointer;
+  transition: all 0.3s ease;
+  margin: 0 5px;
 }
 
-.close-button:hover {
-  color: rgb(102, 0, 0);
+.quantity-container button:hover {
+  background-color: #f5a9a9;
+}
+
+.quantity-container input {
+  width: 50px;
+  padding: 8px 10px;
+  border-radius: 8px;
+  border: 2px solid #ddd;
+  font-size: 16px;
+  text-align: center;
+  transition: all 0.3s ease;
+  background-color: #f9f9f9;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.quantity-container input:focus {
+  outline: none;
+  border-color: #007bff;
+  background-color: #eaf7ff;
+  box-shadow: 0 0 8px rgba(0, 123, 255, 0.5);
+}
+
+.quantity-container button:focus {
+  outline: none;
+  box-shadow: 0 0 8px rgba(0, 123, 255, 0.5);
 }
 
 
-/* Cart Component Styles */
 /* Container for the entire cart page */
-/* Overall Cart Container with soft and clean aesthetic */
 .cart-container {
-  width: 100%;
-  max-width: 900px;
-  margin: 0 auto;
-  padding: 40px;
-  background-color: #ffffff;
-  border-radius: 20px;
-  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.1);
-  font-family: 'Lora', serif;
-  background: linear-gradient(135deg, #f0f0f0 0%, #fafafa 100%);
-  transform: scale(1);
-  transition: transform 0.3s ease;
+  max-width: 1200px;
+  margin: 20px auto;
+  padding: 30px;
+  background: linear-gradient(135deg, #f8a1c2, #76c7d1); /* Lighter gradient from pink to blue */
+  border-radius: 15px;
+  box-shadow: 0 4px 25px rgba(0, 0, 0, 0.1);
+  color: white; /* Change text color to white for better contrast */
 }
 
-.cart-container:hover {
-  transform: scale(1.02); /* Gentle zoom effect on hover */
-}
-
-/* Cart Page Title */
+/* Cart Title */
 .cart-container h2 {
+  font-size: 32px;
+  color: #ffffff; /* White text for better visibility on the gradient */
   text-align: center;
-  font-size: 3rem;
-  color: #2c3e50;
-  margin-bottom: 30px;
-  font-weight: 700;
-  letter-spacing: 1px;
-  text-transform: uppercase;
-  transition: color 0.3s ease, transform 0.3s ease;
-}
-
-.cart-container h2:hover {
-  color: #8e44ad; /* Purple hover effect */
-  transform: translateY(-5px); /* Subtle lift on hover */
-}
-
-/* Paragraph text for instructions or descriptions */
-.cart-container p {
-  text-align: center;
-  font-size: 1.1rem;
-  color: #7f8c8d;
   margin-bottom: 40px;
-  font-weight: 400;
-  opacity: 0.85;
-  transition: opacity 0.3s ease;
+  font-weight: 600;
 }
 
-.cart-container p:hover {
-  opacity: 1; /* Subtle emphasis on hover */
+/* Cart Items */
+.cart-items {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
 }
 
-/* Cart items container with soft, subtle borders */
-.cart-items-container {
-  margin-bottom: 40px;
-  padding-bottom: 20px;
-  border-bottom: 1px solid #e4e4e4;
-}
-
-/* Individual Cart Item Style */
+/* Individual Cart Item */
 .cart-item {
   display: flex;
-  justify-content: space-between;
   align-items: center;
-  padding: 20px 0;
-  border-bottom: 1px solid #e6e6e6;
-  transition: background-color 0.3s ease, transform 0.3s ease;
+  justify-content: space-between;
+  padding: 20px;
+  background-color: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
 .cart-item:hover {
-  background-color: #f9f9f9;
-  transform: translateX(5px); /* Subtle slide effect for hover */
+  transform: translateY(-8px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
 }
 
-.cart-item h3 {
-  font-size: 1.6rem;
-  color: #34495e;
+.cart-item-image {
+  width: 120px;
+  height: 120px;
+  object-fit: cover;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+}
+
+.cart-item-details {
+  flex-grow: 1;
+  margin-left: 20px;
+}
+
+.cart-item-details h3 {
+  font-size: 22px;
+  color: #333;
+  margin-bottom: 10px;
   font-weight: 500;
-  transition: color 0.3s ease;
 }
 
-.cart-item h3:hover {
-  color: #8e44ad; /* Change color to match theme */
+.cart-item-details p {
+  font-size: 16px;
+  color: #777;
+  margin-bottom: 10px;
 }
 
-.cart-item p {
-  font-size: 1.2rem;
-  color: #7f8c8d;
-}
-
-.cart-item button {
-  padding: 12px 22px;
-  background-color: #8e44ad;
-  color: #fff;
-  border: none;
-  border-radius: 12px;
-  font-size: 1.1rem;
-  cursor: pointer;
-  transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-}
-
-.cart-item button:hover {
-  background-color: #013144;
-  transform: scale(1.05);
-  box-shadow: 0 5px 25px rgba(0, 0, 0, 0.15);
-  transition: all 0.3s ease;
-}
-
-/* Cart Summary Section */
-.cart-summary {
+/* Cart Item Actions */
+.cart-item-actions {
   display: flex;
-  justify-content: space-between;
   align-items: center;
+  gap: 15px;
+}
+
+.cart-item-actions input {
+  transform: scale(1.4);
+  transition: transform 0.2s ease;
+}
+
+.cart-item-actions input:hover {
+  transform: scale(1.5);
+}
+
+.remove-button {
+  background-color: #f39c12; /* Bright yellow-orange for remove button */
+  color: white;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.3s;
+}
+
+.remove-button:hover {
+  background-color: #e67e22; /* Darker shade for hover */
+  transform: scale(1.05);
+}
+
+/* Cart Summary */
+.cart-summary {
+  padding: 20px;
+  background-color: #f8f9fa;
+  border-radius: 12px;
   margin-top: 40px;
-  border-top: 2px solid #e0e0e0;
-  padding-top: 20px;
-  transition: transform 0.3s ease;
-}
-
-.cart-summary:hover {
-  transform: translateY(-5px); /* Smooth lift for summary */
-}
-
-.cart-summary h3 {
-  font-size: 2rem;
-  color: #2c3e50;
-  font-weight: 600;
+  text-align: center;
+  border: 1px solid #ddd;
 }
 
 .cart-summary p {
-  font-size: 1.5rem;
-  color: #7f8c8d;
-  font-weight: 500;
+  font-size: 20px;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 15px;
 }
 
-/* Buttons container at the bottom of the cart */
-.cart-buttons-container {
+/* Cart Actions */
+.cart-actions {
   display: flex;
   justify-content: space-between;
-  margin-top: 50px;
+  margin-top: 40px;
+  gap: 20px; /* Add space between the buttons */
 }
 
-.cart-buttons-container button {
-  padding: 18px 30px;
-  font-size: 1.2rem;
-  font-weight: 600;
-  border-radius: 12px;
-  cursor: pointer;
-  transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
-  width: 48%;
+.checkout-button,
+.continue-shopping-button {
+  margin: 0 10px; /* Add horizontal spacing between buttons */
+}
+
+/* Checkout button */
+.checkout-button {
+  background-color: #28a745; /* Green checkout button */
+  color: white;
+  padding: 12px 25px;
   border: none;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-}
-
-.proceed-btn {
-  background-color: #3498db;
-  color: #fff;
-}
-
-.proceed-btn:hover {
-  background-color: #2980b9;
-  transform: scale(1.05);
-  box-shadow: 0 5px 25px rgba(0, 0, 0, 0.15);
-}
-
-.clear-cart-btn {
-  background-color: #95a5a6;
-  color: #fff;
-}
-
-.clear-cart-btn:hover {
-  background-color: #7f8c8d;
-  transform: scale(1.05);
-  box-shadow: 0 5px 25px rgba(0, 0, 0, 0.15);
-}
-
-/* Empty Cart Message */
-.cart-empty-message {
-  text-align: center;
-  padding: 40px 0;
-  display: none;
-}
-
-.cart-empty-message p {
-  font-size: 1.8rem;
-  color: #e74c3c;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 18px;
   font-weight: 600;
-  text-transform: uppercase;
+  transition: background-color 0.3s, transform 0.2s ease;
 }
 
-/* Show empty cart message if cart is empty */
-.cart-items-container.empty-cart + .cart-empty-message {
-  display: block;
+.checkout-button:hover {
+  background-color: #218838;
+  transform: translateY(-2px);
 }
 
-/* Responsive Design */
-@media (max-width: 768px) {
-  .cart-container {
-    padding: 20px;
-  }
-
-  .cart-items-container {
-    margin-bottom: 20px;
-  }
-
-  .cart-item h3 {
-    font-size: 1.4rem;
-  }
-
-  .cart-summary h3, .cart-summary p {
-    font-size: 1.4rem;
-  }
-
-  .cart-buttons-container button {
-    font-size: 1rem;
-    padding: 12px 20px;
-  }
+/* Continue shopping button */
+.continue-shopping-button {
+  background-color: #17a2b8; /* Blue continue shopping button */
+  color: white;
+  padding: 12px 25px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 18px;
+  font-weight: 600;
+  transition: background-color 0.3s, transform 0.2s ease;
 }
+
+.continue-shopping-button:hover {
+  background-color: #138496;
+  transform: translateY(-2px);
+}
+
+/* Adding pink accent to selected elements */
+.cart-item:hover {
+  border-left: 5px solid #f06292; /* Pink accent on hover */
+}
+
+.cart-summary {
+  background-color: #fce4ec; /* Soft pink background for the summary */
+}
+
+.cart-summary p {
+  color: #d81b60; /* Pink color for text in the cart summary */
+}
+
+.remove-button {
+  background-color: #f06292; /* Soft pink color for the remove button */
+}
+
+.remove-button:hover {
+  background-color: #ec407a; /* Darker pink shade on hover */
+}
+
 
 
 /* General Account Container Styling */
@@ -1399,181 +1473,180 @@ button:hover {
   }
 }
 
-/* Container for the Order History */
+/* General Page Styling */
+body {
+  background-color: #f0fff4; /* Light mint green background */
+  font-family: 'Poppins', sans-serif; /* Elegant and modern font */
+  margin: 0;
+  padding: 0;
+  color: #333; /* Neutral text color */
+}
+
+/* Main Container for the Order History */
 .order-history-container {
-  max-width: 900px;
-  margin: 50px auto;
+  width: 90%;
+  margin: 50px auto; /* Centered with ample spacing */
   padding: 30px;
-  border-radius: 12px;
-  background-color: #ffffff;
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
-  text-align: center;
-  animation: fadeIn 1s ease-out;
-  font-family: 'Arial', sans-serif;
+  background: linear-gradient(to right, #f0e4e1, #c3d9f2); /* Soft pastel gradient complementing blue & white */
+  border-radius: 15px; /* Softer rounded corners */
+  box-shadow: 0px 15px 25px rgba(0, 0, 0, 0.3); /* Darker shadow for container */
+  border: 1px solid #d0f0e0; /* Subtle green border */
 }
 
-/* Fade-In Animation */
-@keyframes fadeIn {
-  0% {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-  100% {
-    opacity: 1;
-    transform: translateY(0);
-  }
+/* Add Patterned Border for Product Container */
+.order-history-container {
+  background: linear-gradient(to right, #f0e4e1, #c3d9f2); /* Soft pastel gradient */
+  border-radius: 15px; 
+  padding: 20px;
+  box-shadow: 0px 15px 25px rgba(0, 0, 0, 0.3);
+  position: relative;
 }
 
-/* Title Styling */
-.order-history-container h2 {
-  margin-bottom: 20px;
-  font-size: 2.5rem;
-  color: #333;
-  font-weight: 600;
-  text-align: center;
-  animation: slideIn 0.6s ease-out;
+/* Patterned Border */
+.order-history-container::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border: 5px dashed #ffffff; /* Green dashed line for the border */
+  border-radius: 15px;
+  pointer-events: none; /* To make sure the pattern doesn't block interactions */
+  box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.2); /* Soft shadow to enhance the pattern */
 }
 
-/* Slide-In Animation */
-@keyframes slideIn {
-  0% {
-    opacity: 0;
-    transform: translateX(-30px);
-  }
-  100% {
-    opacity: 1;
-    transform: translateX(0);
-  }
+/* List Styling */
+.order-history-container ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
 }
 
-/* Description paragraph style */
-.order-history-container p {
-  margin-bottom: 40px; /* Increased margin for more space */
-  color: #555;
-  font-size: 1rem;
-  text-align: center;
-  font-weight: 300;
-}
-
-/* Order List Styling */
-.order-history-container .order-list {
-  margin-top: 40px; /* Increased top margin */
-  padding: 25px; /* Added more padding */
-  background-color: #fff;
-  border-radius: 8px;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-  transition: all 0.3s ease;
-}
-
-/* Order List hover effect */
-.order-history-container .order-list:hover {
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
-}
-
-/* Order List Title Styling */
-.order-history-container .order-list h3 {
-  font-size: 1.6rem;
-  color: #333;
-  margin-bottom: 25px; /* Increased margin */
-  font-weight: 500;
-  text-align: left;
-}
-
-/* Order Item Styling */
-.order-history-container .order-list .order-item {
+.order-history-container li {
   display: flex;
-  justify-content: space-between;
-  padding: 20px 0; /* Increased padding for spacing */
-  border-bottom: 1px solid #f0f0f0;
-  transition: background-color 0.3s ease;
+  align-items: center;
+  padding: 20px;
+  background: linear-gradient(to right, #7fa9e4, #ffffff); /* Blue to white gradient */
+  border-radius: 10px; /* Rounded order card */
+  margin-bottom: 20px;
+  box-shadow: 0px 15px 20px rgba(0, 0, 0, 0.3); /* Darker shadow for product container */
+  transition: transform 0.3s ease;
 }
 
-/* Hover effect for order items */
-.order-history-container .order-list .order-item:hover {
-  background-color: #f8f9fa;
+.order-history-container li:last-child {
+  margin-bottom: 0;
 }
 
-/* Last item without border */
-.order-history-container .order-list .order-item:last-child {
-  border-bottom: none;
+.order-history-container li:hover {
+  transform: translateY(-5px); /* Lift effect on hover */
 }
 
-/* Order Info Styling */
-.order-history-container .order-list .order-item .order-info {
-  font-size: 1rem;
-  color: #333;
-  font-weight: 400;
-  flex: 1; /* Ensure it takes up the remaining space */
-  margin-right: 20px; /* Added right margin to give space before the price */
+/* Order Details Styling */
+.order-details {
+  display: flex;
+  flex-direction: row; /* Arrange items horizontally */
+  align-items: center; /* Align content vertically */
+  gap: 20px; /* Ensure space between image and text */
 }
 
-/* Price Styling */
-.order-history-container .order-list .order-item .order-price {
-  font-size: 1.2rem;
-  color: #28a745;
-  font-weight: 600;
-  transition: color 0.3s ease;
-  width: 120px; /* Ensuring consistent width for prices */
-  text-align: right; /* Right-align prices */
+.order-details img {
+  width: 280px; /* Set the width for all images */
+  height: 280px; /* Set the height to match the width for consistent size */
+  object-fit: cover; /* Ensures the image covers the box without distortion */
+  border-radius: 12px; /* Rounded corners for a smooth look */
+  box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2); /* Stronger shadow for better emphasis */
 }
 
-/* Button Styling */
-.order-history-container .order-list .order-item button {
-  margin-left: 20px; /* Added margin for spacing between the price and button */
-  padding: 8px 12px;
-  background-color: #007bff;
-  color: white;
+/* Product Info Styling */
+.order-details div {
+  display: flex;
+  flex-direction: column; /* Stack text vertically */
+  gap: 15px; /* Increased gap between text items */
+}
+
+.order-details p {
+  margin: 0;
+  font-size: 18px; /* Larger text for better readability */
+  color: #4a5568; /* Softer gray text */
+  line-height: 1.5; /* Add line height for spacing */
+}
+
+.order-details strong {
+  font-weight: bold;
+  color: #2d3748; /* Darker text for emphasis */
+}
+
+/* View Details Button */
+.view-details-button {
+  background: linear-gradient(to right, #48bb78, #38a169); /* Green gradient */
+  color: #fff; /* White text */
+  padding: 12px 22px; /* Slightly larger button size */
   border: none;
-  border-radius: 4px;
+  border-radius: 25px; /* Rounded pill shape */
+  font-size: 16px; /* Slightly bigger text for button */
   cursor: pointer;
-  transition: background-color 0.3s;
+  text-decoration: none;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.15); /* Subtle button shadow */
 }
 
-/* Hover effect for buttons */
-.order-history-container .order-list .order-item button:hover {
-  background-color: #0056b3;
+.view-details-button:hover {
+  transform: scale(1.1); /* Zoom effect on hover */
+  box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.2); /* Enhanced shadow */
+  background: linear-gradient(to right, #38a169, #2f855a); /* Darker hover gradient */
+  letter-spacing: 1px; /* Add spacing for elegance */
+  font-weight: bold; /* Bold text on hover */
+}
+
+.delete-button {
+  background: linear-gradient(to right, #e53e3e, #c53030); /* Red gradient */
+  color: white;
+  padding: 12px 22px; /* Same size as View Details */
+  border: none;
+  border-radius: 25px; /* Same rounded pill shape */
+  font-size: 16px; /* Same font size */
+  cursor: pointer;
+  text-decoration: none;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.15); /* Subtle shadow */
+}
+
+.delete-button:hover {
+  transform: scale(1.1); /* Zoom effect on hover */
+  box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.2); /* Enhanced shadow */
+  background: linear-gradient(to right, #c53030, #9b2c2c); /* Darker red hover gradient */
+  letter-spacing: 1px; /* Add spacing for elegance */
+  font-weight: bold; /* Bold text on hover */
+}
+
+
+/* Align Items Neatly */
+.order-history-container li {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start; /* Keep the items aligned to the left */
+  padding: 20px;
+  margin-bottom: 15px;
+  border-bottom: 1px solid #ddd;
+  background-color: #f9f9f9;
+  border-radius: 8px;
 }
 
 /* Responsive Design */
 @media (max-width: 768px) {
-  .order-history-container {
-    padding: 20px;
+  .order-history-container li {
+    flex-direction: column; /* Stack layout on smaller screens */
+    text-align: center; /* Center-align text */
   }
 
-  .order-history-container h2 {
-    font-size: 2rem;
-  }
-
-  .order-history-container p {
-    font-size: 1rem;
-  }
-
-  .order-history-container .order-list {
-    padding: 15px;
-  }
-
-  .order-history-container .order-list .order-item {
-    flex-direction: column;
-    align-items: flex-start;
-    padding: 15px 0; /* Increased vertical padding */
-  }
-
-  .order-history-container .order-list .order-item .order-info,
-  .order-history-container .order-list .order-item .order-price {
-    margin-bottom: 10px; /* More spacing between order info and price */
-  }
-
-  .order-history-container .order-list .order-item .order-price {
-    text-align: left;
-    width: auto; /* Reset width for mobile */
-  }
-
-  .order-history-container .order-list .order-item button {
-    margin-top: 10px;
+  .view-details-button {
+    margin-top: 10px; /* Add spacing for stacked buttons */
   }
 }
 
-.modal {
+/* Modal Styling */
+.order-modal {
   position: fixed;
   top: 0;
   left: 0;
@@ -1584,105 +1657,70 @@ button:hover {
   justify-content: center;
   align-items: center;
   z-index: 1000;
+  visibility: visible; /* Ensures modal is visible */
 }
 
 .modal-content {
-  background: #fff;
-  padding: 20px;
-  border-radius: 8px;
+  background-color: #ffffff;
+  padding: 30px;
+  border-radius: 15px;
+  width: 400px;
+  box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.2);
   text-align: center;
-  position: relative;
-  max-width: 500px;
-  width: 90%;
 }
 
-.modal-content img {
-  max-width: 100%;
-  height: auto;
-  margin-bottom: 15px;
+.modal-content h2 {
+  color: #48bb78;
+  font-size: 1.8rem;
+  margin-bottom: 20px;
 }
 
-.close-button {
-  position: absolute;
-  top: 10px;
-  right: 15px;
-  background: none;
-  border: none;
-  font-size: 1.5rem;
-  cursor: pointer;
+.modal-content p {
+  font-size: 16px;
+  color: #4a5568;
+  margin: 10px 0;
 }
 
-.modal-content button {
-  margin-top: 10px;
-  padding: 10px 20px;
-  background: #007bff;
+.modal-content strong {
+  font-weight: bold;
+}
+
+.close-modal-button {
+  background-color: #f44336;
   color: #fff;
+  padding: 10px 20px;
   border: none;
-  border-radius: 5px;
+  border-radius: 25px;
+  font-size: 16px;
   cursor: pointer;
+  margin-top: 20px;
+  transition: background-color 0.3s ease;
 }
 
-.modal-content button:hover {
-  background: #0056b3;
-}
-/* Modal Overlay */
-.modal-overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent dark background */
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 1000; /* Ensure modal is above other content */
-  opacity: 0;
-  visibility: hidden;
-  transition: opacity 0.3s ease, visibility 0s ease 0.3s;
+.close-modal-button:hover {
+  background-color: #d32f2f;
 }
 
-/* Modal Content */
-.modal-content {
-  background-color: white;
-  padding: 20px;
-  border-radius: 8px;
-  max-width: 500px;
-  width: 90%;
+.no-orders {
+  background-color: #f0f8ff;
+  padding: 40px 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
   text-align: center;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-  transition: transform 0.3s ease;
 }
 
-.modal-content img {
-  max-width: 100%;
-  height: auto;
-  border-radius: 8px;
+.no-orders h2 {
+  font-size: 28px;
+  color: #2c3e50;
   margin-bottom: 10px;
 }
 
-/* Product Price */
-.product-price {
-  font-size: 1.2rem;
-  font-weight: bold;
-  margin-top: 10px;
+.no-orders p {
+  font-size: 18px;
+  color: #7f8c8d;
 }
 
-/* Close Button */
-.close-btn {
-  background-color: #f44336;
-  color: white;
-  padding: 10px;
-  border: none;
-  cursor: pointer;
-  border-radius: 5px;
-  margin-top: 10px;
-  font-size: 1rem;
-}
 
-.close-btn:hover {
-  background-color: #d32f2f;
-}
 
 /* Open modal state (When visible) */
 .modal-overlay.show {
@@ -1705,4 +1743,276 @@ button:hover {
 
 .product-card:hover {
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Checkout Container */
+
+.checkout-container {
+  padding: 30px;
+  max-width: 800px;
+  margin: 50px auto;
+  background: #ffffff;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+}
+
+h2 {
+  font-size: 28px;
+  margin-bottom: 20px;
+  text-align: center;
+  color: #333;
+}
+
+.order-summary {
+  margin-bottom: 30px;
+}
+
+.order-item {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+  padding: 10px;
+  border: 1px solid #e2e2e2;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+}
+
+.order-item:hover {
+  background-color: #f8f8f8;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.order-item-image {
+  width: 70px;
+  height: 70px;
+  object-fit: cover;
+  margin-right: 20px;
+  border-radius: 8px;
+}
+
+.order-item-details {
+  flex-grow: 1;
+}
+
+.order-item-details h4 {
+  font-size: 18px;
+  color: #555;
+  margin-bottom: 5px;
+}
+
+.order-item-details p {
+  font-size: 14px;
+  color: #777;
+}
+
+
+
+/* Place Order Button */
+.place-order-button {
+  padding: 10px 20px;
+  font-size: 16px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, opacity 0.3s ease;
+}
+
+/* Style when the button is enabled (green color) */
+.place-order-button.enabled {
+  background-color: #28a745; /* Green */
+  color: white;
+  border: none;
+  opacity: 1; /* Fully opaque when enabled */
+}
+
+/* Style when the button is disabled (gray color) */
+.place-order-button.disabled {
+  background-color: #d6d6d6; /* Gray */
+  color: #a1a1a1;
+  border: none;
+  opacity: 0.6; /* Semi-transparent when disabled */
+  cursor: not-allowed;
+}
+
+/* Style the button on hover when enabled */
+.place-order-button.enabled:hover {
+  background-color: #218838; /* Darker green on hover */
+}
+
+/* Style the button on hover when disabled (no effect) */
+.place-order-button.disabled:hover {
+  background-color: #d6d6d6; /* No change on hover */
+  cursor: not-allowed;
+}
+
+
+/* Modal Overlay */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.6); /* Dark background with some transparency */
+  display: flex;
+  justify-content: center; /* Centers horizontally */
+  align-items: center; /* Centers vertically */
+  z-index: 1000;
+  transition: opacity 0.3s ease-in-out;
+}
+
+/* Enhanced Modal Content */
+.modal-content {
+  background-color: #fff;
+  padding: 40px 30px;
+  text-align: center;
+  border-radius: 20px; /* Rounded corners for a smoother look */
+  width: 80%;
+  max-width: 600px;
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.2);
+  animation: fadeIn 0.5s ease-out;
+  transform: scale(0.95);
+  transition: transform 0.3s ease-in-out;
+}
+
+.modal-content.show {
+  transform: scale(1); /* Scale up the modal smoothly */
+}
+
+/* Modal Header */
+.modal-content h3 {
+  font-size: 32px;
+  color: #28a745; /* Green color for success */
+  margin-bottom: 20px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  animation: slideIn 0.5s ease-out;
+}
+
+/* Verified Icon */
+.verified-icon {
+  font-size: 70px; /* Make the icon large enough to be noticeable */
+  color: #28a745; /* Green color for verified */
+  margin-bottom: 20px;
+  animation: pulseGlow 1.5s infinite ease-in-out; /* Add pulsing and glowing effect */
+  text-shadow: 0 0 8px rgba(40, 167, 69, 0.6), 0 0 20px rgba(40, 167, 69, 0.5), 0 0 30px rgba(40, 167, 69, 0.4); /* Glow effect */
+}
+
+
+
+/* Modal Body */
+.modal-content p {
+  font-size: 20px;
+  margin-bottom: 30px;
+  color: #333;
+  line-height: 1.6;
+  animation: fadeInText 0.6s ease-out;
+  font-weight: bold;
+  letter-spacing: 0.5px;
+}
+
+/* Close Modal Button */
+.close-modal {
+  background-color: #dc3545; /* Red background */
+  color: white;
+  padding: 14px 30px;
+  border: none;
+  cursor: pointer;
+  font-size: 18px;
+  font-weight: bold;
+  border-radius: 50px;
+  transition: all 0.3s ease;
+  width: 100%;
+}
+
+.close-modal:hover {
+  background-color: #c82333;
+  transform: scale(1.05); /* Slight scale-up effect */
+}
+
+.close-modal:active {
+  background-color: #bd2130;
+  transform: scale(0.95); /* Slight scale-down effect when clicked */
+}
+
+/* Modal Fade-in Animation */
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Slide In Header Animation */
+@keyframes slideIn {
+  0% {
+    transform: translateY(-30px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+/* Fade-in Text Animation */
+@keyframes fadeInText {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+/* Pulse and Glow Animation */
+@keyframes pulseGlow {
+  0% {
+    transform: scale(1); /* Start at normal size */
+    opacity: 1;
+    text-shadow: 0 0 8px rgba(40, 167, 69, 0.6), 0 0 20px rgba(40, 167, 69, 0.5), 0 0 30px rgba(40, 167, 69, 0.4);
+  }
+  50% {
+    transform: scale(1.2); /* Increase size slightly */
+    opacity: 0.8;
+    text-shadow: 0 0 15px rgba(40, 167, 69, 1), 0 0 30px rgba(40, 167, 69, 0.8), 0 0 45px rgba(40, 167, 69, 0.6); /* Intense glow */
+  }
+  100% {
+    transform: scale(1); /* Return to normal size */
+    opacity: 1;
+    text-shadow: 0 0 8px rgba(40, 167, 69, 0.6), 0 0 20px rgba(40, 167, 69, 0.5), 0 0 30px rgba(40, 167, 69, 0.4); /* Normal glow */
+  }
+}
+
+/* Optional: Hover effect */
+.verified-icon:hover {
+  transform: rotate(15deg); /* Slight rotation on hover */
+}
+
+.place-order-button,
+.back-to-cart-button {
+  padding: 12px 24px;  /* Adjust padding for more space inside buttons */
+  font-size: 16px;
+  border-radius: 5px;  /* Optional: rounded corners for better appearance */
+}
+
+.place-order-button {
+  background-color: #28a745; /* Green color for Place Order */
+  color: white;
+}
+
+.place-order-button:hover {
+  background-color: #218838; /* Darker green on hover */
+}
+
+.back-to-cart-button {
+  background-color: #007bff; /* Blue color for Go Back to Cart */
+  color: white;
+  margin-top: 20px;  /* Add space between Place Order and Go Back to Cart buttons */
+}
+
+.back-to-cart-button:hover {
+  background-color: #0056b3; /* Darker blue on hover */
 }
