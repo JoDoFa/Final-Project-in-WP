@@ -5,14 +5,14 @@ import 'font-awesome/css/font-awesome.min.css';
 import { CartProvider, useCart } from './Pages/CartContext'; // Import useCart
 
 // Component imports
-import Home from './Pages/Home';
-import Products from './Pages/Products';
-import Cart from './Pages/Cart';
-import Account from './Pages/Account';
-import Checkout from './Pages/Checkout';
-import Login from './Pages/Login';
-import Register from './Pages/Register';
-import OrderHistory from './Pages/OrderHistory';
+import Home from './pages/Home';
+import Products from './pages/Products';
+import Cart from './pages/Cart';
+import Account from './pages/Account';
+import Checkout from './pages/Checkout';
+import Login from './pages/Login';
+import Register from './pages/Register';
+import OrderHistory from './pages/OrderHistory';
 
 function App() {
   const Navbar = () => {
