@@ -1,8 +1,8 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 import './App.css';
 import 'font-awesome/css/font-awesome.min.css';
-import { CartProvider, CartContext } from './CartContext'; // Import CartContext
+import { CartProvider, useCart } from './pages/CartContext'; // Import useCart
 
 // Component imports
 import Home from './pages/Home';
@@ -16,8 +16,7 @@ import OrderHistory from './pages/OrderHistory';
 
 function App() {
   const Navbar = () => {
-    const { cart } = useContext(CartContext); // Access cart from CartContext
-
+    const { cart } = useCart(); // Use useCart to get cart state
 
     return (
       <header className="App-header">
@@ -30,8 +29,8 @@ function App() {
             <li>
               <Link to="/cart">
                 Cart
-                {cart.length > 0 && ( // Show badge if cart is not empty
-                  <span className="cart-badge">{cart.length}</span>
+                {cart.length > 0 && (
+                <span className={`cart-badge ${cart.length === 0 ? 'fade' : ''}`}>{cart.length}</span>
                 )}
               </Link>
             </li>
@@ -57,7 +56,7 @@ function App() {
               <Route path="/checkout" element={<Checkout />} />
               <Route path="/login" element={<Login />} />
               <Route path="/register" element={<Register />} />
-              <Route path="/orders" element={<OrderHistory />} />
+              <Route path="/orders" element={<OrderHistory />} /> {/* Add OrderHistory route */}
             </Routes>
           </main>
         </div>
