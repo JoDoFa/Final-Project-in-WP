@@ -43,13 +43,13 @@ function Checkout() {
       };
   
       // Get existing orders or initialize an empty array
-      const orders = JSON.parse(localStorage.getItem('orders')) || [];
+      const orders = JSON.parse(localStorage.getItem('orderHistory')) || [];
   
       // Add the new order to the list
       orders.push(newOrder);
   
       // Save the updated orders list to localStorage
-      localStorage.setItem('orders', JSON.stringify(orders));
+      localStorage.setItem('orderHistory', JSON.stringify(orders));
   
       setShowModal(true);  // Show success modal
       setTimeout(() => {
