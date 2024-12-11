@@ -294,6 +294,28 @@ body, html {
   opacity: 0.8; /* Slight opacity on hover */
 }
 
+.cart-badge {
+  position: absolute;
+  top: -5px;
+  right: -5px;
+  background-color: red;
+  color: white;
+  border-radius: 50%;
+  padding: 6px 8px;
+  font-size: 14px;
+  font-weight: bold;
+  min-width: 20px;
+  text-align: center;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); /* Soft shadow to lift the badge */
+  transition: transform 0.3s ease, opacity 0.3s ease; /* Smooth transition for animations */
+}
+
+.cart-badge.fade {
+  opacity: 0; /* Makes the badge fade if cart is empty */
+  transform: scale(0); /* Shrinks the badge */
+}
+
+
 
 /* Hero Section */
 .hero-section {
@@ -432,6 +454,26 @@ body, html {
   color: #004d40;
   margin-bottom: 30px;
 }
+
+.quantity-selector {
+  display: flex;
+  align-items: center;
+  margin-top: 10px;
+}
+
+.quantity-selector button {
+  background-color: #f8c9c9;
+  border: none;
+  font-size: 20px;
+  padding: 5px;
+  cursor: pointer;
+}
+
+.quantity-selector span {
+  font-size: 18px;
+  margin: 0 10px;
+}
+
 
 .product-cards {
   display: flex;
@@ -846,11 +888,19 @@ button:hover {
   padding: 5px 0; /* Padding to make it snug */
 }
 
-.quantity-container label {
-  font-size: 16px;
-  margin-right: 10px;
-  font-weight: bold;
-  color: #333;
+.quantity-container button {
+  background-color: #f8c9c9;
+  border: 2px solid #ddd;
+  font-size: 18px;
+  padding: 8px 10px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin: 0 5px;
+}
+
+.quantity-container button:hover {
+  background-color: #f5a9a9;
 }
 
 .quantity-container input {
@@ -863,7 +913,6 @@ button:hover {
   transition: all 0.3s ease;
   background-color: #f9f9f9;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-  margin-right: 10px;
 }
 
 .quantity-container input:focus {
@@ -873,26 +922,11 @@ button:hover {
   box-shadow: 0 0 8px rgba(0, 123, 255, 0.5);
 }
 
-.quantity-container button {
-  background-color: #007bff;
-  color: white;
-  padding: 8px 12px;
-  border: none;
-  border-radius: 8px;
-  font-size: 14px;
-  cursor: pointer;
-  transition: all 0.3s ease;
-}
-
-.quantity-container button:hover {
-  background-color: #0056b3;
-  transform: translateY(-2px);
-}
-
 .quantity-container button:focus {
   outline: none;
   box-shadow: 0 0 8px rgba(0, 123, 255, 0.5);
 }
+
 
 /* Container for the entire cart page */
 /* Cart Container */
@@ -1697,8 +1731,7 @@ body {
 }
 
 /* Checkout Container */
-/* Checkout Styles */
-/* Checkout Container */
+
 .checkout-container {
   padding: 30px;
   max-width: 800px;
@@ -1760,32 +1793,42 @@ h2 {
 
 
 /* Place Order Button */
-/* Enhanced Place Order Button */
 .place-order-button {
-  background: linear-gradient(145deg, #28a745, #218838); /* Green gradient */
-  color: white;
-  padding: 16px 40px;
-  border: none;
+  padding: 10px 20px;
+  font-size: 16px;
+  border-radius: 5px;
   cursor: pointer;
-  font-size: 20px;
-  font-weight: bold;
-  border-radius: 50px; /* Rounded edges for a modern look */
-  transition: all 0.3s ease;
-  width: 100%;
-  text-align: center;
-  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+  transition: background-color 0.3s ease, opacity 0.3s ease;
 }
 
-.place-order-button:hover {
-  background: linear-gradient(145deg, #218838, #28a745); /* Reversed gradient on hover */
-  transform: translateY(-5px); /* Lift effect */
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+/* Style when the button is enabled (green color) */
+.place-order-button.enabled {
+  background-color: #28a745; /* Green */
+  color: white;
+  border: none;
+  opacity: 1; /* Fully opaque when enabled */
 }
 
-.place-order-button:active {
-  transform: translateY(0); /* Return to original position when clicked */
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+/* Style when the button is disabled (gray color) */
+.place-order-button.disabled {
+  background-color: #d6d6d6; /* Gray */
+  color: #a1a1a1;
+  border: none;
+  opacity: 0.6; /* Semi-transparent when disabled */
+  cursor: not-allowed;
 }
+
+/* Style the button on hover when enabled */
+.place-order-button.enabled:hover {
+  background-color: #218838; /* Darker green on hover */
+}
+
+/* Style the button on hover when disabled (no effect) */
+.place-order-button.disabled:hover {
+  background-color: #d6d6d6; /* No change on hover */
+  cursor: not-allowed;
+}
+
 
 /* Modal Overlay */
 .modal-overlay {
@@ -1932,6 +1975,34 @@ h2 {
 .verified-icon:hover {
   transform: rotate(15deg); /* Slight rotation on hover */
 }
+
+.place-order-button,
+.back-to-cart-button {
+  padding: 12px 24px;  /* Adjust padding for more space inside buttons */
+  font-size: 16px;
+  border-radius: 5px;  /* Optional: rounded corners for better appearance */
+}
+
+.place-order-button {
+  background-color: #28a745; /* Green color for Place Order */
+  color: white;
+}
+
+.place-order-button:hover {
+  background-color: #218838; /* Darker green on hover */
+}
+
+.back-to-cart-button {
+  background-color: #007bff; /* Blue color for Go Back to Cart */
+  color: white;
+  margin-top: 20px;  /* Add space between Place Order and Go Back to Cart buttons */
+}
+
+.back-to-cart-button:hover {
+  background-color: #0056b3; /* Darker blue on hover */
+}
+
+
 
 
 
