@@ -18,7 +18,7 @@ body {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  background: linear-gradient(to right, #0074D9, #00b8a9); /* Fresh green-to-blue gradient */
+  background: linear-gradient(to right, #f06292, #76c7d1, #00374d); /* Pink to Blue to Green gradient */
   color: #ffffff;
   padding: 16px 32px;
   box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15); /* Softer shadow */
@@ -26,6 +26,7 @@ body {
   z-index: 1;
   font-family: 'Playfair Display', serif; /* Luxurious font */
 }
+
 
 .App-header .logo {
   width: 50px;
@@ -215,9 +216,7 @@ footer .contact-info {
   margin-top: 10px;
 }
 
-
-
-
+/* Full-Screen Background */
 /* Full-Screen Background */
 body::before {
   content: "";
@@ -227,7 +226,7 @@ body::before {
   width: 100%;
   height: 100%;
   background: 
-    linear-gradient(to right, hsl(0, 0%, 100%), hsl(182, 65%, 41%)); /* Gradient background */
+    linear-gradient(to right, #ffffff, #f8a1c2, #00374d); /* White to Light Pink to Light Green */
   z-index: -1; /* Keep behind content */
 }
 
@@ -929,22 +928,23 @@ button:hover {
 
 
 /* Container for the entire cart page */
-/* Cart Container */
 .cart-container {
   max-width: 1200px;
   margin: 20px auto;
-  padding: 20px;
-  background-color: #f8f9fa;
-  border-radius: 10px;
-  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+  padding: 30px;
+  background: linear-gradient(135deg, #f8a1c2, #76c7d1); /* Lighter gradient from pink to blue */
+  border-radius: 15px;
+  box-shadow: 0 4px 25px rgba(0, 0, 0, 0.1);
+  color: white; /* Change text color to white for better contrast */
 }
 
 /* Cart Title */
 .cart-container h2 {
-  font-size: 28px;
-  color: #333;
+  font-size: 32px;
+  color: #ffffff; /* White text for better visibility on the gradient */
   text-align: center;
-  margin-bottom: 30px;
+  margin-bottom: 40px;
+  font-weight: 600;
 }
 
 /* Cart Items */
@@ -959,147 +959,162 @@ button:hover {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 15px;
-  background-color: white;
-  border-radius: 8px;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-  transition: transform 0.2s ease-in-out;
+  padding: 20px;
+  background-color: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
 .cart-item:hover {
-  transform: translateY(-5px);
+  transform: translateY(-8px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
 }
 
 .cart-item-image {
-  width: 100px;
-  height: 100px;
+  width: 120px;
+  height: 120px;
   object-fit: cover;
   border-radius: 8px;
+  border: 1px solid #ddd;
 }
 
 .cart-item-details {
   flex-grow: 1;
-  margin-left: 15px;
+  margin-left: 20px;
 }
 
 .cart-item-details h3 {
-  font-size: 20px;
+  font-size: 22px;
   color: #333;
-  margin-bottom: 5px;
+  margin-bottom: 10px;
+  font-weight: 500;
 }
 
 .cart-item-details p {
   font-size: 16px;
-  color: #555;
+  color: #777;
+  margin-bottom: 10px;
 }
 
 /* Cart Item Actions */
 .cart-item-actions {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 15px;
 }
 
 .cart-item-actions input {
-  transform: scale(1.2);
+  transform: scale(1.4);
+  transition: transform 0.2s ease;
+}
+
+.cart-item-actions input:hover {
+  transform: scale(1.5);
 }
 
 .remove-button {
-  background-color: #e74c3c;
+  background-color: #f39c12; /* Bright yellow-orange for remove button */
   color: white;
-  padding: 8px 12px;
+  padding: 10px 15px;
   border: none;
   border-radius: 6px;
   cursor: pointer;
-  transition: background-color 0.3s;
+  transition: background-color 0.3s, transform 0.3s;
 }
 
 .remove-button:hover {
-  background-color: #c0392b;
+  background-color: #e67e22; /* Darker shade for hover */
+  transform: scale(1.05);
 }
 
 /* Cart Summary */
 .cart-summary {
-  padding: 15px;
-  background-color: #f1f1f1;
-  border-radius: 8px;
-  margin-top: 30px;
+  padding: 20px;
+  background-color: #f8f9fa;
+  border-radius: 12px;
+  margin-top: 40px;
   text-align: center;
+  border: 1px solid #ddd;
 }
 
 .cart-summary p {
-  font-size: 18px;
-  font-weight: bold;
+  font-size: 20px;
+  font-weight: 600;
   color: #333;
+  margin-bottom: 15px;
 }
 
 /* Cart Actions */
 .cart-actions {
   display: flex;
   justify-content: space-between;
-  margin-top: 30px;
+  margin-top: 40px;
+  gap: 20px; /* Add space between the buttons */
 }
 
 .checkout-button,
-.clear-cart-button {
-  padding: 12px 20px;
-  font-size: 16px;
-  font-weight: bold;
-  border: none;
-  border-radius: 6px;
-  cursor: pointer;
-  transition: background-color 0.3s;
-  width: 48%;
+.continue-shopping-button {
+  margin: 0 10px; /* Add horizontal spacing between buttons */
 }
 
+/* Checkout button */
 .checkout-button {
-  background-color: #28a745;
+  background-color: #28a745; /* Green checkout button */
   color: white;
+  padding: 12px 25px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 18px;
+  font-weight: 600;
+  transition: background-color 0.3s, transform 0.2s ease;
 }
 
 .checkout-button:hover {
   background-color: #218838;
+  transform: translateY(-2px);
 }
 
-.checkout-button:disabled {
-  background-color: #d6e9d6;
-  cursor: not-allowed;
-}
-
-.clear-cart-button {
-  background-color: #f39c12;
+/* Continue shopping button */
+.continue-shopping-button {
+  background-color: #17a2b8; /* Blue continue shopping button */
   color: white;
+  padding: 12px 25px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 18px;
+  font-weight: 600;
+  transition: background-color 0.3s, transform 0.2s ease;
 }
 
-.clear-cart-button:hover {
-  background-color: #e67e22;
+.continue-shopping-button:hover {
+  background-color: #138496;
+  transform: translateY(-2px);
 }
 
-.clear-cart-button:disabled {
-  background-color: #f4d03f;
-  cursor: not-allowed;
+/* Adding pink accent to selected elements */
+.cart-item:hover {
+  border-left: 5px solid #f06292; /* Pink accent on hover */
 }
 
-/* Responsive Design */
-@media (max-width: 768px) {
-  .cart-items {
-    gap: 15px;
-  }
-
-  .cart-item {
-    flex-direction: column;
-    align-items: flex-start;
-  }
-
-  .cart-item-actions {
-    margin-top: 10px;
-  }
-
-  .cart-actions {
-    flex-direction: column;
-    gap: 15px;
-  }
+.cart-summary {
+  background-color: #fce4ec; /* Soft pink background for the summary */
 }
+
+.cart-summary p {
+  color: #d81b60; /* Pink color for text in the cart summary */
+}
+
+.remove-button {
+  background-color: #f06292; /* Soft pink color for the remove button */
+}
+
+.remove-button:hover {
+  background-color: #ec407a; /* Darker pink shade on hover */
+}
+
 
 
 /* General Account Container Styling */
