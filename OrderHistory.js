@@ -6,12 +6,12 @@ function OrderHistory() {
   const [selectedOrder, setSelectedOrder] = useState(null); // To store details of the selected order
 
   useEffect(() => {
-    // Fetch the purchased products from localStorage
+    // Fetch the orders from localStorage
     const purchasedProducts = JSON.parse(localStorage.getItem("purchasedProducts")) || [];
-    console.log("Orders from localStorage:", purchasedProducts); // Debugging line
+    console.log("Orders from localStorage:", purchasedProducts);
     setOrders(purchasedProducts);
   }, []);
-
+  
   // Handle View Details click to open modal
   const handleViewDetails = (order) => {
     setSelectedOrder(order);
