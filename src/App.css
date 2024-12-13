@@ -18,14 +18,18 @@ body {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  background: linear-gradient(to right, #f06292, #76c7d1, #00374d); /* Pink to Blue to Green gradient */
-  color: #ffffff;
+  background-color: #006757; /* Soft muted green */
+  color: #ffffff; /* White for contrast */
   padding: 16px 32px;
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15); /* Softer shadow */
-  position: relative;
-  z-index: 1;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+  border-bottom: 2px solid #e1e8ed; /* Optional border for structure */
+  position: sticky;
+  top: 0;
+  z-index: 10;
   font-family: 'Playfair Display', serif; /* Luxurious font */
 }
+
+
 
 
 .App-header .logo {
@@ -124,6 +128,226 @@ footer {
   padding: 10px 0;
 }
 
+/* Shop Info */
+.shop-info {
+  background-color: #aacdec;
+  padding: 60px 40px;
+  border-radius: 12px;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+  margin: 60px 0;
+}
+
+.shop-info-content {
+  display: flex; /* Flexbox layout for side-by-side content */
+  align-items: stretch; /* Stretch the items to equal height */
+  justify-content: space-between; /* Create space between text and image */
+  gap: 40px; /* Space between the text and image */
+  flex-wrap: wrap; /* Ensure it stacks on smaller screens */
+}
+
+.shop-info-text {
+  flex: 1; /* Text takes up available space */
+  max-width: 550px; /* Limit the width of the text */
+  color: #333; /* Dark text for better readability */
+}
+
+.shop-info h2 {
+  font-size: 2.5rem; /* Bold and impactful title */
+  margin-bottom: 15px;
+  font-weight: 600; /* Slightly bolder text for emphasis */
+  color: #2f4f4f; /* Dark slate gray for the title */
+  text-align: left; /* Align the title to the left */
+}
+
+.shop-info p {
+  font-size: 1.1rem;
+  margin-bottom: 25px;
+  line-height: 1.8; /* Increased line height for better readability */
+  color: #555; /* Slightly lighter color for the body text */
+}
+
+.shop-info ul {
+  list-style-type: none;
+  padding: 0;
+  margin-bottom: 20px; /* Space after the list */
+}
+
+.shop-info ul li {
+  font-size: 1.1rem;
+  margin: 12px 0;
+  font-weight: 500;
+  color: #444; /* A dark gray for the list items */
+}
+
+.shop-info ul li::before {
+  content: "✔"; /* Checkmark before each list item */
+  margin-right: 12px;
+  color: #2e8b57; /* Dark green color for the checkmarks */
+}
+
+.shop-info a {
+  color: #01284e; /* Vibrant blue color for the link */
+  text-decoration: none;
+  font-weight: 500;
+  display: inline-block;
+  margin-top: 10px; /* Space above the link */
+}
+
+.shop-info a:hover {
+  color: #ff6347; /* Hover effect with a warm color */
+  text-decoration: underline;
+}
+
+.shop-info-image {
+  flex: 1; /* Image takes up available space */
+  max-width: 500px; /* Limit image width */
+  text-align: center; /* Center the image */
+  display: flex;
+  justify-content: center; /* Center image horizontally */
+  align-items: stretch; /* Stretch image to match text height */
+}
+
+.shop-info-image img {
+  width: 100%; /* Make the image responsive */
+  border-radius: 12px; /* Rounded corners for the image */
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1); /* Subtle shadow for the image */
+  object-fit: cover; /* Ensure the image covers the space proportionally */
+  height: 100%; /* Make the image stretch vertically */
+}
+
+/* Modal Overlay */
+.shop-info-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.8);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+/* Overlay Animation */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* Modal Content */
+.shop-info-modal-content {
+  background: linear-gradient(135deg, #81c0dd, #d7eff8);
+  padding: 30px;
+  border-radius: 15px;
+  width: 85%;
+  max-width: 700px;
+  overflow-y: auto;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+  position: relative;
+  animation: slideDown 0.4s ease-out;
+  border: 2px solid #6faac5;
+}
+
+/* Modal Animation */
+@keyframes slideDown {
+  from {
+    transform: translateY(-30px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+/* Close Button */
+.shop-info-close-btn {
+  background: #eaeaea;
+  border: none;
+  font-size: 20px;
+  color: #555;
+  cursor: pointer;
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  border-radius: 50%;
+  width: 35px;
+  height: 35px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: 0.3s;
+}
+.shop-info-close-btn:hover {
+  background: #ff5e5e;
+  color: #fff;
+}
+
+/* Header Styling */
+.shop-info-modal-content h2,
+.shop-info-modal-content h3 {
+  color: #2a5d74;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 600;
+  margin: 0 0 15px;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+/* Body Content */
+.shop-info-modal-content p {
+  color: #3b4d57;
+  font-family: 'Roboto', sans-serif;
+  font-size: 16px;
+  line-height: 1.6;
+  margin: 10px 0;
+  letter-spacing: 0.5px;
+}
+
+/* Learn More Section */
+.shop-info-modal-content .learn-more {
+  margin-top: 20px;
+  padding: 15px;
+  background: rgba(255, 255, 255, 0.8);
+  border-radius: 12px;
+  border: 1px solid #bddfea;
+  color: #5b7c8e;
+  font-style: italic;
+  font-size: 14px;
+  line-height: 1.4;
+  text-shadow: 0 0 2px rgba(0, 0, 0, 0.1);
+}
+
+/* Responsive Styling */
+@media (max-width: 768px) {
+  .shop-info-modal-content {
+    width: 90%;
+    padding: 20px;
+  }
+  .shop-info-close-btn {
+    top: 10px;
+    right: 10px;
+    font-size: 18px;
+    width: 30px;
+    height: 30px;
+  }
+  .shop-info-modal-content h2,
+  .shop-info-modal-content h3 {
+    font-size: 1.2em;
+  }
+  .shop-info-modal-content p {
+    font-size: 14px;
+  }
+}
+
+
+
+
 header, main, footer {
   width: 100%;
   box-sizing: border-box;
@@ -131,60 +355,84 @@ header, main, footer {
 
 /* Footer Styles */
 footer {
-  background: linear-gradient(135deg, #f8c9c9 0%, #f8a9a9 100%);
+  background: linear-gradient(135deg, #f8c9c9 0%, #e77ea6 100%);
   color: white;
   text-align: center;
   padding: 60px 30px;
   font-family: 'Arial', sans-serif;
+  box-shadow: 0 -4px 10px rgba(0, 0, 0, 0.1); /* Slight shadow for depth */
+  border-top: 2px solid rgba(255, 255, 255, 0.3); /* Subtle border at the top */
 }
 
+/* Footer Title (SSF Flair) */
 footer h3 {
-  font-size: 2.2rem;
+  font-size: 2.4rem;
   font-weight: 700;
-  margin-bottom: 15px;
-  letter-spacing: 1px;
+  margin-bottom: 20px;
+  letter-spacing: 1.2px;
+  text-transform: uppercase; /* Adds emphasis to the title */
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
 }
 
+
+/* Paragraph Styles */
 footer p {
-  font-size: 1rem;
-  margin: 8px 0;
+  font-size: 1.1rem;
+  margin: 10px 0;
   font-style: italic;
+  line-height: 1.6; /* Improves readability */
 }
 
+/* Link Styles */
 footer a {
   color: white;
   text-decoration: none;
   font-weight: 500;
-  transition: color 0.3s ease;
+  transition: color 0.3s ease, text-decoration 0.3s ease;
 }
 
 footer a:hover {
-  color: #f8a9a9;
+  color: #f8a9a9; /* Slight hover effect */
+  text-decoration: underline;
+}
+
+/* Social Media Section */
+footer .social-media {
+  margin: 20px 0;
 }
 
 footer .social-media a {
   margin: 0 15px;
+  display: inline-block;
 }
 
 footer .social-media img {
-  width: 35px;
-  height: 35px;
-  transition: transform 0.3s ease;
+  width: 40px; /* Increased for better visibility */
+  height: 40px;
+  border-radius: 50%; /* Adds a circular look */
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Adds depth to the icons */
 }
 
 footer .social-media a:hover img {
-  transform: scale(1.1);
+  transform: scale(1.2); /* Enlarges icons on hover */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3); /* More prominent shadow on hover */
 }
 
+/* Navigation Links */
 footer ul {
   list-style: none;
   padding: 0;
   margin: 30px 0;
+  display: flex;
+  justify-content: center;
+  gap: 20px; /* Consistent spacing between items */
 }
 
 footer ul li {
   display: inline-block;
-  margin: 0 15px;
 }
 
 footer ul li button {
@@ -194,29 +442,34 @@ footer ul li button {
   text-decoration: underline;
   font-size: 1rem;
   cursor: pointer;
-  transition: text-decoration 0.3s ease;
+  transition: text-decoration 0.3s ease, color 0.3s ease;
 }
 
 footer ul li button:hover {
   text-decoration: none;
+  color: #f8a9a9; /* Matches the hover color of links */
 }
 
 footer ul li button:focus {
   outline: none;
 }
 
+/* Copyright Information */
 footer .copyright {
   font-size: 0.9rem;
   color: rgba(255, 255, 255, 0.7);
   margin-top: 20px;
+  letter-spacing: 0.5px; /* Adds a modern touch */
 }
 
+/* Contact Info Section */
 footer .contact-info {
   font-size: 1rem;
   margin-top: 10px;
+  line-height: 1.5; /* Improves readability for contact details */
 }
 
-/* Full-Screen Background */
+
 /* Full-Screen Background */
 body::before {
   content: "";
@@ -226,7 +479,7 @@ body::before {
   width: 100%;
   height: 100%;
   background: 
-    linear-gradient(to right, #ffffff, #f8a1c2, #00374d); /* White to Light Pink to Light Green */
+    linear-gradient(to right, #ffffff, #e77ea6, #ffffff, #24a6ab); 
   z-index: -1; /* Keep behind content */
 }
 
@@ -244,9 +497,8 @@ body::after {
   z-index: -1; /* Keeps it behind content */
 }
 
-
 /* Home Component Styles */
-/* Main container */
+
 /* Importing Fonts */
 @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Lato:wght@400&family=Roboto:wght@400&display=swap');
 
@@ -314,8 +566,6 @@ body, html {
   transform: scale(0); /* Shrinks the badge */
 }
 
-
-
 /* Hero Section */
 .hero-section {
   position: relative;
@@ -340,7 +590,7 @@ body, html {
 /* Hero Text Styling */
 .hero-text {
   position: absolute; /* Absolute positioning to place text over image */
-  top: 50%; /* Centers the text vertically */
+  top: 50%; /* Move text further down */
   left: 50px; /* Move the text a little further from the left edge */
   transform: translateY(-50%); /* Fine-tune the vertical centering */
   z-index: 1; /* Keeps text above the image */
@@ -348,7 +598,6 @@ body, html {
   color: #00302a; /* Text color */
   text-shadow: 2px 2px 4px rgb(255, 255, 255); /* Adds outline/shadow effect */
 }
-
 
 /* Heading Styles */
 .hero-text h1 {
@@ -371,56 +620,73 @@ body, html {
 }
 
 /* Highlight Text Style */
-
 .hero-text .highlight {
   color: #a4e9e3;
   text-shadow: 0 0 4px rgb(0, 54, 58), 0 0 10px rgb(0, 54, 58); 
   animation: highlightAnimation 1.5s ease-in-out infinite;  
 }
 
-
+/* Button Group */
 /* Button Group */
 .button-group {
   display: flex;
-  gap: 25px; /* Spacing between buttons */
+  gap: 17px;
   justify-content: center;
-  margin-top: 40px; /* Space above the buttons */
-  flex-wrap: wrap; /* Allow buttons to wrap if the screen is too small */
+  margin-top: 35px; /* Keeps the spacing between text and buttons */
+  flex-wrap: wrap;
+  position: relative;
+  z-index: 2;
+  transform: translateY(-10px); /* Move the buttons up */
 }
+
 
 /* Individual Button Styling */
-.button-group {
+.button-group button {
+  padding: 10px 20px; 
+  font-size: 14px;
+  color: #ffffff;
+  background: #00302a;
+  border: none;
+  border-radius: 25px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-family: 'Roboto', sans-serif;
+  white-space: nowrap;
+  text-transform: uppercase;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
   display: flex;
-  justify-content: flex-start; /* Align buttons at the start (top left) */
-  gap: 20px; /* Spacing between buttons */
-  margin-top: 20px; /* Space above the buttons */
+  align-items: center;
+  justify-content: center;
 }
 
-.button-group button {
-  padding: 14px 40px; /* Adjust padding for balanced space */
-  font-size: 18px; /* Larger font size for readability */
-  color: #ffffff;
-  background: linear-gradient(145deg, #00302a, #006757); /* Gradient for depth */
-  border: none;
-  border-radius: 12px; /* Smooth rounded corners */
-  cursor: pointer;
-  transition: all 0.3s ease; /* Smooth hover and scaling effects */
-  font-family: 'Roboto', sans-serif;
-  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.15); /* Subtle depth */
-  white-space: nowrap; /* Prevent text from wrapping */
+/* Arrow Icon */
+.button-group button::after {
+  content: "";
+  width: 0;
+  height: 0;
+  border-top: 6px solid transparent;
+  border-bottom: 6px solid transparent;
+  border-left: 10px solid #ffffff;
+  margin-left: 8px;
+  transition: transform 0.3s ease;
 }
 
 /* Hover and active states for buttons */
 .button-group button:hover {
-  background: linear-gradient(145deg, #006757, #00302a); /* Gradient flip on hover */
-  transform: scale(1.05); /* Slight zoom effect */
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2); /* Slightly stronger shadow */
+  background-color: #006757;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
 }
 
 .button-group button:active {
-  transform: scale(0.98); /* Slight shrink on press */
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1); /* Softer shadow on press */
+  transform: translateY(1px);
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1);
 }
+
+.button-group button:hover::after {
+  transform: translateX(5px);
+}
+
 
 /* Hero Image */
 .hero-image {
