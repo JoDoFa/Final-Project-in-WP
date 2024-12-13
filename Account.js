@@ -203,13 +203,7 @@ const Account = () => {
                     <strong>Email:</strong> {account.email}
                   </div>
                   <div className="button-group">
-                    {/* Update password button */}
-                    <button
-                      className="btn-secondary"
-                      onClick={() => setIsUpdatingPassword(true)} // Show the form when clicked
-                    >
-                      Update Password
-                    </button>
+                    {/* Removed the Update Password button */}
                     <button
                       className="btn-danger"
                       onClick={() => handleRemoveAccount(account.email)}
@@ -222,25 +216,25 @@ const Account = () => {
             </ul>
           )}
         </div>
-      </div>
 
-      {isLoginModalOpen && (
-        <div className="modal">
-          <div className="modal-content">
-            <Login
-              setError={setError}
-              setLoggedInUser={setLoggedInUser}
-              accounts={accounts}
-            />
-            <button
-              className="btn-secondary"
-              onClick={() => setIsLoginModalOpen(false)}
-            >
-              Close
-            </button>
+        {isLoginModalOpen && (
+          <div className="modal">
+            <div className="modal-content">
+              <Login
+                setError={setError}
+                setLoggedInUser={setLoggedInUser}
+                accounts={accounts}
+              />
+              <button
+                className="btn-secondary"
+                onClick={() => setIsLoginModalOpen(false)}
+              >
+                Close
+              </button>
+            </div>
           </div>
-        </div>
-      )}
+        )}
+      </div>
     </div>
   );
 };
