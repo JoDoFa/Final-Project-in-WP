@@ -4,11 +4,13 @@ import { useCart } from './CartContext'; // Importing useCart
 import { FaFacebook, FaInstagram } from 'react-icons/fa';
 
 function Home() {
-  const navigate = useNavigate();
+  const navigate = useNavigate();  
   const { addToCart } = useCart(); // Use the addToCart function from context
   const [modalData, setModalData] = useState(null); // State for modal content
   const [isModalOpen, setIsModalOpen] = useState(false); // State for modal visibility
   const [quantity, setQuantity] = useState(1); // State to track the quantity in the modal
+  const [learnMoreContent, setLearnMoreContent] = useState(''); // Content for Learn More modal
+  const [isLearnMoreModalOpen, setIsLearnMoreModalOpen] = useState(false); // Separate state for Learn More modal
 
   const products = [
     {
@@ -37,6 +39,7 @@ function Home() {
   const openModal = (product) => {
     setModalData(product);
     setIsModalOpen(true);
+    setIsLearnMoreModalOpen(false); // Close Learn More modal if it's open
   };
 
   const closeModal = () => {
@@ -75,12 +78,17 @@ function Home() {
     closeModal();
     navigate('/cart');
   };
-  
-  
 
   // Increase or decrease quantity
   const handleQuantityChange = (change) => {
     setQuantity((prevQuantity) => Math.max(1, prevQuantity + change)); // Prevent quantity from going below 1
+  };
+
+  // Function to handle modal content change or fetching dynamic content
+  const handleLearnMore = () => {
+    setLearnMoreContent('Updated content for the modal');
+    setIsLearnMoreModalOpen(true); // Open the Learn More modal
+    setIsModalOpen(false); // Close product details modal if it's open
   };
 
   return (
@@ -105,7 +113,7 @@ function Home() {
           />
         </div>
       </div>
-
+  
       {/* Featured Products Section */}
       <div className="featured-products">
         <h2>Featured Skin Care Products</h2>
@@ -121,38 +129,77 @@ function Home() {
           ))}
         </div>
       </div>
-
-      {/* Modal */} 
-{isModalOpen && (
-  <div className="modal">
-    <div className="modal-content">
-      <button
-        className="close-button"
-        onClick={closeModal}
-      >
-        &times;
-      </button>
-      <img src={modalData.image} alt={modalData.name} />
-      <h3>{modalData.name}</h3>
-      <p>{modalData.description}</p>
-      <h4>{modalData.price}</h4> {/* Display the price with the dollar sign */}
-
-      {/* Quantity Adjuster */}
-      <div className="quantity-selector">
-        <button onClick={() => handleQuantityChange(-1)}>-</button>
-        <span>{quantity}</span>
-        <button onClick={() => handleQuantityChange(1)}>+</button>
+  
+      {/* New Info Section */}
+      <div className="shop-info">
+        <div className="shop-info-content">
+          <div className="shop-info-text">
+            <h2>Why Shop With Us?</h2>
+            <p>We offer the best in skincare with our natural, high-quality products. Enjoy free shipping on all orders and easy returns.</p>
+            <ul>
+              <li>Fast and reliable shipping</li>
+              <li>100% natural ingredients</li>
+              <li>Easy returns within 30 days</li>
+              <li>24/7 customer support</li>
+            </ul>
+            {/* Replaced anchor tag with a button */}
+            <button onClick={handleLearnMore} className="shop-info-learn-more-btn">Learn More</button>
+            <div>{learnMoreContent}</div>
+          </div>
+          <div className="shop-info-image">
+            <img
+              src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR5ay7Do0yB8Agu890OMMbgLmZ6R8HnxA84fQ&s"
+              alt="Skincare Product"
+            />
+          </div>
+        </div>
       </div>
+  
+      {/* Modal for Learn More */}
+      {isLearnMoreModalOpen && (
+        <div className="shop-info-modal-overlay">
+          <div className="shop-info-modal-content">
+            <button onClick={() => setIsLearnMoreModalOpen(false)} className="shop-info-close-btn">X</button>
+            <h2>Our Story</h2>
+            <p>SSF Flair was founded with a vision to bring premium, luxury skincare to every individual...</p>
+            <h3>Our Ingredients</h3>
+            <p>Our products are crafted with the finest natural ingredients, such as Aloe Vera, Vitamin C, and Shea Butter...</p>
+            <h3>Sustainability & Ethical Practices</h3>
+            <p>We are committed to reducing our carbon footprint and using sustainable packaging...</p>
+            <h3>Customer Reviews</h3>
+            <p>"I love SSF Flair products! My skin has never felt so hydrated and rejuvenated." - Jane Doe</p>
+            <div>{learnMoreContent}</div>
+          </div>
+        </div>
+      )}
 
-      {/* Button to add the product to the cart and order history */}
-      <button onClick={() => handleBuyNow(modalData)}>Buy Now</button>
-    </div>
-  </div>
-)}
+      {/* Modal for Product Details */}
+      {isModalOpen && modalData && (  
+        <div className="modal">
+          <div className="modal-content">
+            <button className="close-button" onClick={closeModal}>
+              &times;
+            </button>
+            <img src={modalData.image} alt={modalData.name} />
+            <h3>{modalData.name}</h3>
+            <p>{modalData.description}</p>
+            <h4>{modalData.price}</h4>
+    
+            {/* Quantity Adjuster */}
+            <div className="quantity-selector">
+              <button onClick={() => handleQuantityChange(-1)}>-</button>
+              <span>{quantity}</span>
+              <button onClick={() => handleQuantityChange(1)}>+</button>
+            </div>
+    
+            {/* Button to add the product to the cart and order history */}
+            <button onClick={() => handleBuyNow(modalData)}>Buy Now</button>
+          </div>
+        </div>
+      )}
 
-
-      {/* Footer Section */}
-      <footer style={{ backgroundColor: '#f8c9c9', color: 'white', textAlign: 'center', padding: '20px', marginTop: '20px' }}>
+       {/* Footer Section */}
+       <footer style={{ backgroundColor: '#f8c9c9', color: 'white', textAlign: 'center', padding: '20px', marginTop: '20px' }}>
         <div>
           <h3>SSF FLAIR</h3>
           <p>WHERE BEAUTY COMES TOGETHER</p>
@@ -178,5 +225,4 @@ function Home() {
     </div>
   );
 }
-
 export default Home;
