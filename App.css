@@ -2434,7 +2434,7 @@ h2 {
   }
 }
 
-/* Slide In Header Animation */
+/* Slides In Header Animation */
 @keyframes slideIn {
   0% {
     transform: translateY(-30px);
