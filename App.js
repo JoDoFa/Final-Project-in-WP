@@ -4,7 +4,7 @@ import './App.css';
 import 'font-awesome/css/font-awesome.min.css';
 import { CartProvider, useCart } from './Pages/CartContext'; // Import useCart
 
-// Component imports
+// Component import
 import Home from './Pages/Home';
 import Products from './Pages/Products';
 import Cart from './Pages/Cart';
