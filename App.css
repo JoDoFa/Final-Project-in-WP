@@ -1753,18 +1753,10 @@ body {
   width: 90%;
   margin: 50px auto; /* Centered with ample spacing */
   padding: 30px;
-  background: linear-gradient(to right, #f0e4e1, #c3d9f2); /* Soft pastel gradient complementing blue & white */
-  border-radius: 15px; /* Softer rounded corners */
-  box-shadow: 0px 15px 25px rgba(0, 0, 0, 0.3); /* Darker shadow for container */
-  border: 1px solid #d0f0e0; /* Subtle green border */
-}
-
-/* Add Patterned Border for Product Container */
-.order-history-container {
   background: linear-gradient(to right, #f0e4e1, #c3d9f2); /* Soft pastel gradient */
-  border-radius: 15px; 
-  padding: 20px;
-  box-shadow: 0px 15px 25px rgba(0, 0, 0, 0.3);
+  border-radius: 15px; /* Softer rounded corners */
+  box-shadow: 0px 15px 25px rgba(0, 0, 0, 0.3); /* Darker shadow */
+  border: 1px solid #d0f0e0; /* Subtle green border */
   position: relative;
 }
 
@@ -1776,10 +1768,10 @@ body {
   left: 0;
   right: 0;
   bottom: 0;
-  border: 5px dashed #ffffff; /* Green dashed line for the border */
+  border: 5px dashed #ffffff; /* Green dashed line */
   border-radius: 15px;
-  pointer-events: none; /* To make sure the pattern doesn't block interactions */
-  box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.2); /* Soft shadow to enhance the pattern */
+  pointer-events: none;
+  box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.2); /* Soft shadow */
 }
 
 /* List Styling */
@@ -1792,11 +1784,13 @@ body {
 .order-history-container li {
   display: flex;
   align-items: center;
+  justify-content: flex-start; /* Keep the items aligned to the left */
   padding: 20px;
+  margin-bottom: 15px;
+  border-bottom: 1px solid #ddd;
   background: linear-gradient(to right, #7fa9e4, #ffffff); /* Blue to white gradient */
-  border-radius: 10px; /* Rounded order card */
-  margin-bottom: 20px;
-  box-shadow: 0px 15px 20px rgba(0, 0, 0, 0.3); /* Darker shadow for product container */
+  border-radius: 10px;
+  box-shadow: 0px 15px 20px rgba(0, 0, 0, 0.3); /* Darker shadow */
   transition: transform 0.3s ease;
 }
 
@@ -1805,7 +1799,7 @@ body {
 }
 
 .order-history-container li:hover {
-  transform: translateY(-5px); /* Lift effect on hover */
+  transform: translateY(-5px); /* Lift effect */
 }
 
 /* Order Details Styling */
@@ -1817,97 +1811,77 @@ body {
 }
 
 .order-details img {
-  width: 280px; /* Set the width for all images */
-  height: 280px; /* Set the height to match the width for consistent size */
-  object-fit: cover; /* Ensures the image covers the box without distortion */
-  border-radius: 12px; /* Rounded corners for a smooth look */
-  box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2); /* Stronger shadow for better emphasis */
+  width: 280px;
+  height: 280px;
+  object-fit: cover; /* Ensures image fits without distortion */
+  border-radius: 12px;
+  box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2); /* Stronger shadow */
 }
 
-/* Product Info Styling */
 .order-details div {
   display: flex;
   flex-direction: column; /* Stack text vertically */
-  gap: 15px; /* Increased gap between text items */
+  gap: 15px;
 }
 
 .order-details p {
   margin: 0;
-  font-size: 18px; /* Larger text for better readability */
-  color: #4a5568; /* Softer gray text */
-  line-height: 1.5; /* Add line height for spacing */
+  font-size: 18px; /* Larger text */
+  color: #4a5568; /* Softer gray */
+  line-height: 1.5; /* Add spacing */
 }
 
 .order-details strong {
   font-weight: bold;
-  color: #2d3748; /* Darker text for emphasis */
+  color: #2d3748; /* Darker text */
 }
 
-/* View Details Button */
-.view-details-button {
-  background: linear-gradient(to right, #48bb78, #38a169); /* Green gradient */
-  color: #fff; /* White text */
-  padding: 12px 22px; /* Slightly larger button size */
+/* Buttons Styling */
+.view-details-button, .delete-button {
+  color: #fff;
+  padding: 12px 22px;
   border: none;
-  border-radius: 25px; /* Rounded pill shape */
-  font-size: 16px; /* Slightly bigger text for button */
+  border-radius: 25px;
+  font-size: 16px;
   cursor: pointer;
   text-decoration: none;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
-  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.15); /* Subtle button shadow */
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+.view-details-button {
+  background: linear-gradient(to right, #48bb78, #38a169); /* Green gradient */
 }
 
 .view-details-button:hover {
-  transform: scale(1.1); /* Zoom effect on hover */
-  box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.2); /* Enhanced shadow */
-  background: linear-gradient(to right, #38a169, #2f855a); /* Darker hover gradient */
-  letter-spacing: 1px; /* Add spacing for elegance */
-  font-weight: bold; /* Bold text on hover */
+  transform: scale(1.1);
+  box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.2);
+  background: linear-gradient(to right, #38a169, #2f855a); /* Darker hover */
+  letter-spacing: 1px;
+  font-weight: bold;
 }
 
 .delete-button {
   background: linear-gradient(to right, #e53e3e, #c53030); /* Red gradient */
-  color: white;
-  padding: 12px 22px; /* Same size as View Details */
-  border: none;
-  border-radius: 25px; /* Same rounded pill shape */
-  font-size: 16px; /* Same font size */
-  cursor: pointer;
-  text-decoration: none;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.15); /* Subtle shadow */
 }
 
 .delete-button:hover {
-  transform: scale(1.1); /* Zoom effect on hover */
-  box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.2); /* Enhanced shadow */
-  background: linear-gradient(to right, #c53030, #9b2c2c); /* Darker red hover gradient */
-  letter-spacing: 1px; /* Add spacing for elegance */
-  font-weight: bold; /* Bold text on hover */
-}
-
-
-/* Align Items Neatly */
-.order-history-container li {
-  display: flex;
-  align-items: center;
-  justify-content: flex-start; /* Keep the items aligned to the left */
-  padding: 20px;
-  margin-bottom: 15px;
-  border-bottom: 1px solid #ddd;
-  background-color: #f9f9f9;
-  border-radius: 8px;
+  transform: scale(1.1);
+  box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.2);
+  background: linear-gradient(to right, #c53030, #9b2c2c); /* Darker hover */
+  letter-spacing: 1px;
+  font-weight: bold;
 }
 
 /* Responsive Design */
 @media (max-width: 768px) {
   .order-history-container li {
-    flex-direction: column; /* Stack layout on smaller screens */
-    text-align: center; /* Center-align text */
+    flex-direction: column; /* Stack layout */
+    text-align: center;
   }
 
   .view-details-button {
-    margin-top: 10px; /* Add spacing for stacked buttons */
+    margin-top: 10px; /* Spacing for stacked buttons */
   }
 }
 
@@ -1923,7 +1897,7 @@ body {
   justify-content: center;
   align-items: center;
   z-index: 1000;
-  visibility: visible; /* Ensures modal is visible */
+  visibility: visible;
 }
 
 .modal-content {
@@ -1967,6 +1941,7 @@ body {
   background-color: #d32f2f;
 }
 
+/* Empty Order Notice */
 .no-orders {
   background-color: #f0f8ff;
   padding: 40px 20px;
@@ -1986,6 +1961,252 @@ body {
   color: #7f8c8d;
 }
 
+/* Feedback Modal */
+.feedback-modal, .feedback-submitted-modal, .customer-feedback-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.6); /* Darker backdrop for better focus */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.feedback-modal .modal-content, .feedback-submitted-modal .modal-content, .customer-feedback-modal .modal-content {
+  background: linear-gradient(135deg, #ffafbd, #ffc3a0); /* Gradient pink and peach background */
+  padding: 30px;
+  border-radius: 20px;
+  width: 450px;
+  box-shadow: 0px 15px 25px rgba(0, 0, 0, 0.3); /* Deeper shadow for a modern look */
+  text-align: center;
+  font-family: 'Arial', sans-serif;
+}
+
+.feedback-modal .modal-content h2, .feedback-submitted-modal .modal-content h2, .customer-feedback-modal .modal-content h2 {
+  font-size: 2rem;
+  color: #033c41; /* Bright blue for headings */
+  margin-bottom: 25px;
+}
+
+.feedback-modal label {
+  display: block;
+  font-size: 1rem;
+  color: #022e31;
+  text-align: left;
+  margin-bottom: 8px;
+  font-weight: bold;
+}
+
+.feedback-modal input, .feedback-modal textarea {
+  width: calc(100% - 20px); /* Maintain consistent width without container */
+  margin-bottom: 15px;
+  padding: 12px;
+  font-size: 16px;
+  border: 1px solid #000000; /* Blue border for inputs */
+  border-radius: 10px;
+  outline: none;
+  background-color: #f8f9fa; /* Soft light-gray background for inputs */
+  transition: all 0.3s ease-in-out;
+  display: block; /* Ensure block alignment for proper stacking */
+}
+
+.feedback-modal textarea {
+  height: 120px; /* Larger height for textarea */
+  resize: none; /* Disable resizing */
+}
+
+.feedback-modal input:focus, .feedback-modal textarea:focus {
+  border-color: #ff7eb9; /* Pink border on focus */
+  box-shadow: 0px 0px 5px #ff7eb9;
+}
+
+.feedback-modal button {
+  width: 100%;
+  padding: 12px;
+  background: linear-gradient(90deg, #bbd0f1, #ff7eb9); /* Blue to pink gradient */
+  color: #000000;
+  border: none;
+  border-radius: 10px;
+  font-size: 1.1rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+  margin-bottom: 15px; /* Add spacing between buttons */
+}
+
+.feedback-modal button:last-of-type {
+  margin-bottom: 0; /* Remove margin from the last button */
+}
+
+.feedback-modal button:hover {
+  background: linear-gradient(90deg, #ff7eb9, #3b82f6); /* Reverse gradient on hover */
+  transform: scale(1.05); /* Slightly larger on hover */
+}
+
+.feedback-modal .close-btn {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  background-color: transparent;
+  border: none;
+  font-size: 1.5rem;
+  color: #ff7eb9; /* Pink close button */
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+
+.feedback-modal .close-btn:hover {
+  color: #3b82f6; /* Blue on hover */
+}
+
+/* Align inputs and labels properly */
+.feedback-modal .form-group {
+  margin-bottom: 20px;
+  text-align: left; /* Align labels to the left */
+}
+
+/* Customer Feedback Modal */
+.customer-feedback-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.6); /* Semi-transparent background */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+/* Modal Content */
+.customer-feedback-modal .modal-content {
+  background-color: #ffffff;
+  border-radius: 15px;
+  padding: 40px;
+  width: 600px; /* Increased width */
+  max-width: 90%; /* Responsive */
+  box-shadow: 0px 8px 25px rgba(0, 0, 0, 0.2); /* Slightly larger shadow */
+  text-align: left;
+  overflow-y: auto;
+  max-height: 80%; /* Prevent overflow */
+  position: relative;
+}
+
+/* Title */
+.customer-feedback-modal h2 {
+  font-size: 2.5rem; /* Increased font size */
+  color: #48bb78; /* Green for the title */
+  margin-bottom: 20px;
+  text-align: center;
+  font-weight: bold;
+  padding: 0 10px;
+}
+
+/* List Style (Feedback items) */
+.customer-feedback-modal ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.customer-feedback-modal li {
+  margin-bottom: 20px;
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  background: #f9f9f9;
+  display: flex;
+  flex-direction: column; /* Make feedback items stacked */
+  gap: 10px; /* Add space between content */
+}
+
+.customer-feedback-modal li p {
+  margin: 0;
+  font-size: 1.1rem; /* Slightly larger text for feedback */
+  line-height: 1.6;
+}
+
+.customer-feedback-modal li small {
+  display: block;
+  color: #888;
+  font-size: 0.9rem;
+  margin-top: 8px;
+}
+
+/* Feedback Actions */
+.customer-feedback-modal .feedback-actions {
+  margin-top: 20px;
+  display: flex;
+  gap: 15px; /* Increased space between buttons */
+  justify-content: center; /* Center the buttons */
+}
+
+.customer-feedback-modal .feedback-actions button {
+  padding: 10px 20px; /* Increased padding for buttons */
+  border: none;
+  border-radius: 8px; /* Rounded corners for buttons */
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.customer-feedback-modal .feedback-actions button:first-of-type {
+  background-color: #3b82f6; /* Blue for Edit */
+  color: white;
+}
+
+.customer-feedback-modal .feedback-actions button:first-of-type:hover {
+  background-color: #2563eb; /* Darker Blue */
+}
+
+.customer-feedback-modal .feedback-actions button:last-of-type {
+  background-color: #ef4444; /* Red for Remove */
+  color: white;
+}
+
+.customer-feedback-modal .feedback-actions button:last-of-type:hover {
+  background-color: #dc2626; /* Darker Red */
+}
+
+/* Close Button (X Button) */
+.customer-feedback-modal .close-modal-button {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  background-color: #f5f5f5; /* Neutral background */
+  color: transparent; /* Hide the text */
+  border: none;
+  border-radius: 50%; /* Circular button */
+  font-size: 0; /* Hide text */
+  font-weight: bold;
+  cursor: pointer;
+  width: 40px; /* Larger button */
+  height: 40px; /* Larger button */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: background-color 0.3s ease;
+}
+
+/* Close button icon */
+.customer-feedback-modal .close-modal-button::before {
+  content: "\00d7"; /* Unicode for the 'X' symbol */
+  font-size: 1.8rem; /* Adjust size */
+  color: #444; /* Dark grey color for the icon */
+}
+
+/* Hover effect for close button */
+.customer-feedback-modal .close-modal-button:hover {
+  background-color: #ddd; /* Slightly darker on hover */
+}
+
+.customer-feedback-modal .close-modal-button:hover::before {
+  color: #f00; /* Change icon color on hover */
+}
 
 
 /* Open modal state (When visible) */
