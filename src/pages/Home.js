@@ -1,28 +1,23 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useCart } from './CartContext'; // Importing useCart
 import { FaFacebook, FaInstagram } from 'react-icons/fa';
 
-function App() {
-  const navigate = useNavigate();
+function Home() {
+  const navigate = useNavigate();  
+  const { addToCart } = useCart(); // Use the addToCart function from context
   const [modalData, setModalData] = useState(null); // State for modal content
   const [isModalOpen, setIsModalOpen] = useState(false); // State for modal visibility
-
-  const openModal = (product) => {
-    setModalData(product);
-    setIsModalOpen(true);
-  };
-
-  const closeModal = () => {
-    setIsModalOpen(false);
-    setModalData(null);
-  };
+  const [quantity, setQuantity] = useState(1); // State to track the quantity in the modal
+  const [learnMoreContent, setLearnMoreContent] = useState(''); // Content for Learn More modal
+  const [isLearnMoreModalOpen, setIsLearnMoreModalOpen] = useState(false); // Separate state for Learn More modal
 
   const products = [
     {
       id: 1,
       name: 'La Mer Cream',
       description: 'Luxury Skincare to rejuvenate and hydrate your skin.',
-      price: '$350',
+      price: '$350', 
       image: 'https://www.elyswimbledon.co.uk/cdn/shop/files/la-mer-la-mer-creme-de-la-mer-moisturizing-cream-31759324315733_1600x.jpg?v=1726505068',
     },
     {
@@ -40,6 +35,61 @@ function App() {
       image: 'https://images.squarespace-cdn.com/content/v1/5ea04a52b0a5f05e8cc2d566/1611804368879-LLL5S1RGGSJW72B67R5C/Screen+Shot+2021-01-27+at+10.23.47+PM.png',
     },
   ];
+
+  const openModal = (product) => {
+    setModalData(product);
+    setIsModalOpen(true);
+    setIsLearnMoreModalOpen(false); // Close Learn More modal if it's open
+  };
+
+  const closeModal = () => {
+    setIsModalOpen(false);
+    setModalData(null);
+  };
+
+  // Handle the "Buy Now" button click to add product to cart and order history
+  const handleBuyNow = (product) => {
+    const price = parseFloat(product.price.replace('$', '').trim());
+    const productWithQuantity = { ...product, price, quantity };
+  
+    // Add the product to the cart
+    addToCart(productWithQuantity);
+  
+    // Create an order object with all relevant order details
+    const newOrder = {
+      orderNumber: new Date().toISOString(), // Unique order number
+      name: product.name,
+      price: product.price,
+      quantity,
+      date: new Date().toLocaleString(),
+      image: product.image,
+    };
+  
+    // Get the existing orders or initialize an empty array if no orders exist
+    const existingOrders = JSON.parse(localStorage.getItem("purchasedProducts")) || [];
+  
+    // Add the new order to the existing list
+    existingOrders.push(newOrder);
+  
+    // Save the updated orders list back to localStorage
+    localStorage.setItem("purchasedProducts", JSON.stringify(existingOrders));
+  
+    // Close the modal and navigate to the cart page
+    closeModal();
+    navigate('/cart');
+  };
+
+  // Increase or decrease quantity
+  const handleQuantityChange = (change) => {
+    setQuantity((prevQuantity) => Math.max(1, prevQuantity + change)); // Prevent quantity from going below 1
+  };
+
+  // Function to handle modal content change or fetching dynamic content
+  const handleLearnMore = () => {
+    setLearnMoreContent('Updated content for the modal');
+    setIsLearnMoreModalOpen(true); // Open the Learn More modal
+    setIsModalOpen(false); // Close product details modal if it's open
+  };
 
   return (
     <div className="app">
@@ -63,7 +113,7 @@ function App() {
           />
         </div>
       </div>
-
+  
       {/* Featured Products Section */}
       <div className="featured-products">
         <h2>Featured Skin Care Products</h2>
@@ -73,160 +123,106 @@ function App() {
               <img src={product.image} alt={product.name} />
               <h3>{product.name}</h3>
               <p>{product.description}</p>
+              <h4>{product.price}</h4>
               <button onClick={() => openModal(product)}>View Details</button>
             </div>
           ))}
         </div>
       </div>
+  
+      {/* New Info Section */}
+      <div className="shop-info">
+        <div className="shop-info-content">
+          <div className="shop-info-text">
+            <h2>Why Shop With Us?</h2>
+            <p>We offer the best in skincare with our natural, high-quality products. Enjoy free shipping on all orders and easy returns.</p>
+            <ul>
+              <li>Fast and reliable shipping</li>
+              <li>100% natural ingredients</li>
+              <li>Easy returns within 30 days</li>
+              <li>24/7 customer support</li>
+            </ul>
+            {/* Replaced anchor tag with a button */}
+            <button onClick={handleLearnMore} className="shop-info-learn-more-btn">Learn More</button>
+            <div>{learnMoreContent}</div>
+          </div>
+          <div className="shop-info-image">
+            <img
+              src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR5ay7Do0yB8Agu890OMMbgLmZ6R8HnxA84fQ&s"
+              alt="Skincare Product"
+            />
+          </div>
+        </div>
+      </div>
+  
+      {/* Modal for Learn More */}
+      {isLearnMoreModalOpen && (
+        <div className="shop-info-modal-overlay">
+          <div className="shop-info-modal-content">
+            <button onClick={() => setIsLearnMoreModalOpen(false)} className="shop-info-close-btn">X</button>
+            <h2>Our Story</h2>
+            <p>SSF Flair was founded with a vision to bring premium, luxury skincare to every individual...</p>
+            <h3>Our Ingredients</h3>
+            <p>Our products are crafted with the finest natural ingredients, such as Aloe Vera, Vitamin C, and Shea Butter...</p>
+            <h3>Sustainability & Ethical Practices</h3>
+            <p>We are committed to reducing our carbon footprint and using sustainable packaging...</p>
+            <h3>Customer Reviews</h3>
+            <p>"I love SSF Flair products! My skin has never felt so hydrated and rejuvenated." - Jane Doe</p>
+            <div>{learnMoreContent}</div>
+          </div>
+        </div>
+      )}
 
-      {/* Modal */}
-      {isModalOpen && (
+      {/* Modal for Product Details */}
+      {isModalOpen && modalData && (  
         <div className="modal">
           <div className="modal-content">
-            <button
-              className="close-button"
-              style={{
-                color: '#ffffff',
-                fontSize: '40px',
-                backgroundColor: '#770000',
-                border: 'none',
-                borderRadius: '0',
-                padding: '10px 20px',
-                display: 'flex',
-                justifyContent: 'center',
-                alignItems: 'center',
-                cursor: 'pointer',
-              }}
-              onMouseEnter={(e) => (e.target.style.backgroundColor = 'rgb(102, 0, 0)')}
-              onMouseLeave={(e) => (e.target.style.backgroundColor = '#770000')}
-              onClick={closeModal}
-            >
+            <button className="close-button" onClick={closeModal}>
               &times;
             </button>
             <img src={modalData.image} alt={modalData.name} />
             <h3>{modalData.name}</h3>
             <p>{modalData.description}</p>
             <h4>{modalData.price}</h4>
-            <button onClick={() => navigate('/checkout')}>Buy Now</button>
-            {/* Updated Links Section */}
-            <div style={{ marginTop: '10px' }}>
+    
+            {/* Quantity Adjuster */}
+            <div className="quantity-selector">
+              <button onClick={() => handleQuantityChange(-1)}>-</button>
+              <span>{quantity}</span>
+              <button onClick={() => handleQuantityChange(1)}>+</button>
             </div>
+    
+            {/* Button to add the product to the cart and order history */}
+            <button onClick={() => handleBuyNow(modalData)}>Buy Now</button>
           </div>
         </div>
       )}
 
-      {/* Footer Section */}
-      <footer
-        style={{
-          backgroundColor: '#f8c9c9', 
-          color: 'white', 
-          textAlign: 'center', 
-          padding: '20px', 
-          marginTop: '20px',
-        }}
-      >
+       {/* Footer Section */}
+       <footer style={{ backgroundColor: '#f8c9c9', color: 'white', textAlign: 'center', padding: '20px', marginTop: '20px' }}>
         <div>
-          <h3>BEAUTYBAR</h3>
+          <h3>SSF FLAIR</h3>
           <p>WHERE BEAUTY COMES TOGETHER</p>
         </div>
-
         <div>
           <h4>Contact</h4>
-          <p>Email: <a href="mailto:custserv@beautybar.com.ph" style={{ color: 'white' }}>custserv@beautybar.com.ph</a></p>
+          <p>Email: <a href="mailto:ssflair@philippines.com.ph" style={{ color: 'white' }}>ssflair@philippines.com.ph</a></p>
           <p>Phone: <a href="tel:+63288305000" style={{ color: 'white' }}>(02) 8830 5000</a></p>
         </div>
-
         <div>
-  <h4>Navigation</h4>
-  <ul style={{ listStyle: 'none', padding: 0 }}>
-    <li>
-      <button
-        style={{
-          background: 'none',
-          border: 'none',
-          color: 'white',
-          textDecoration: 'underline',
-          cursor: 'pointer',
-        }}
-        onClick={() => console.log('Brands clicked')}
-      >
-        Brands
-      </button>
-    </li>
-    <li>
-      <button
-        style={{
-          background: 'none',
-          border: 'none',
-          color: 'white',
-          textDecoration: 'underline',
-          cursor: 'pointer',
-        }}
-        onClick={() => console.log('Makeup clicked')}
-      >
-        Makeup
-      </button>
-    </li>
-    <li>
-      <button
-        style={{
-          background: 'none',
-          border: 'none',
-          color: 'white',
-          textDecoration: 'underline',
-          cursor: 'pointer',
-        }}
-        onClick={() => console.log('Skincare clicked')}
-      >
-        Skincare
-      </button>
-    </li>
-    <li>
-      <button
-        style={{
-          background: 'none',
-          border: 'none',
-          color: 'white',
-          textDecoration: 'underline',
-          cursor: 'pointer',
-        }}
-        onClick={() => console.log('Hair clicked')}
-      >
-        Hair
-      </button>
-    </li>
-  </ul>
-</div>
-
-
-<div>
-      <h4>Follow Us</h4>
-      <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" style={{ margin: '5px' }}>
-        <FaFacebook style={{ color: '#4267B2', fontSize: '30px' }} />
-      </a>
-      <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" style={{ margin: '5px' }}>
-        <FaInstagram style={{ color: '#C13584', fontSize: '30px' }} />
-      </a>
-    </div>
-
-        <div>
-          <p>© 2024 Beauty Bar Philippines. All Rights Reserved.</p>
-        </div>
-
-        {/* Additional Footer Content */}
-        <p>&copy; 2024 Skincare Co. All rights reserved.</p>
-        <p>
-          <a href="/privacy-policy" style={{ color: '#fff', textDecoration: 'underline' }}>
-            Privacy Policy
-          </a>{' '}
-          |{' '}
-          <a href="/terms-of-service" style={{ color: '#fff', textDecoration: 'underline' }}>
-            Terms of Service
+          <h4>Follow Us</h4>
+          <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" style={{ margin: '5px' }}>
+            <FaFacebook style={{ color: '#4267B2', fontSize: '30px' }} />
           </a>
-        </p>
+          <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" style={{ margin: '5px' }}>
+            <FaInstagram style={{ color: '#C13584', fontSize: '30px' }} />
+          </a>
+        </div>
+        <div>
+          <p>© 2024 SSF Flair Philippines. All Rights Reserved.</p>
+        </div>
       </footer>
     </div>
   );
-};
-
-export default App;
+}
+export default Home;
