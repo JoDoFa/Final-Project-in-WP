@@ -1,0 +1,68 @@
+import React from 'react';
+import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
+import './App.css';
+import 'font-awesome/css/font-awesome.min.css';
+import { CartProvider, useCart } from './Pages/CartContext'; // Import useCart
+
+// Component imports
+import Home from './Pages/Home';
+import Products from './Pages/Products';
+import Cart from './Pages/Cart';
+import Account from './Pages/Account';
+import Checkout from './Pages/Checkout';
+import Login from './Pages/Login';
+import Register from './Pages/Register';
+import OrderHistory from './Pages/OrderHistory';
+
+function App() {
+  const Navbar = () => {
+    const { cart } = useCart(); // Use useCart to get cart state
+
+    return (
+      <header className="App-header">
+        <img src="https://www.creativefabrica.com/wp-content/uploads/2021/12/01/Skincare-Logo-Design-Graphics-21027211-1-1-580x387.png" alt="Logo" className="logo" />
+        <h1>SSF Flair</h1>
+        <nav>
+          <ul>
+            <li><Link to="/">Home</Link></li>
+            <li><Link to="/products">Products</Link></li>
+            <li>
+              <Link to="/cart">
+                Cart
+                {cart.length > 0 && (
+                <span className={`cart-badge ${cart.length === 0 ? 'fade' : ''}`}>{cart.length}</span>
+                )}
+              </Link>
+            </li>
+            <li><Link to="/account">Account</Link></li>
+            <li><Link to="/orders">Order History</Link></li>
+          </ul>
+        </nav>
+      </header>
+    );
+  };
+
+  return (
+    <CartProvider>
+      <Router>
+        <div className="App">
+          <Navbar /> {/* Add the Navbar component */}
+          <main>
+            <Routes>
+              <Route path="/home" element={<Home />} />
+              <Route path="/products" element={<Products />} />
+              <Route path="/cart" element={<Cart />} />
+              <Route path="/account" element={<Account />} />
+              <Route path="/checkout" element={<Checkout />} />
+              <Route path="/login" element={<Login />} />
+              <Route path="/register" element={<Register />} />
+              <Route path="/orders" element={<OrderHistory />} /> {/* Add OrderHistory route */}
+            </Routes>
+          </main>
+        </div>
+      </Router>
+    </CartProvider>
+  );
+}
+
+export default App;
