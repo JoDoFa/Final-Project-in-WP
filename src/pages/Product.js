@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-
+import { useCart } from './CartContext';
 
 
 // Products Categories
@@ -149,9 +149,9 @@ const categories = [
 ];
 
 function Products() {
-  // State for the selected product to show in the modal
+  const { addToCart } = useCart();  // Get addToCart function from CartContext
   const [selectedProduct, setSelectedProduct] = useState(null);
-  const [quantity, setQuantity] = useState(1); // State to track quantity
+  const [quantity, setQuantity] = useState(1);
   const navigate = useNavigate();
 
   // Function to show product details in the modal
@@ -173,8 +173,18 @@ function Products() {
 
   // Function to handle Buy button click
   const handleBuyClick = (product) => {
+    const price = parseFloat(product.price.replace('$', '').trim()); // Convert price to number
     const orderNumber = new Date().getTime(); // Unique order number
     const purchaseDate = new Date().toLocaleString(); // Purchase date and time
+    const productToAdd = {
+      ...product, // Add all product details
+      price: price, // Add numeric price
+      quantity: quantity, // Add quantity
+    };
+
+    addToCart(productToAdd); // Add the selected product to the cart
+
+    navigate('/cart');
 
     // Create an order object
     const orderData = {
@@ -196,8 +206,8 @@ function Products() {
     // Save the updated orders to localStorage
     localStorage.setItem("purchasedProducts", JSON.stringify(existingOrders));
 
-    // Navigate to the Order History page
-    navigate("/orders");
+    // Navigate to the Cart page
+    navigate("/cart");
   };
   
 
