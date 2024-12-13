@@ -49,7 +49,7 @@ function App() {
           <Navbar /> {/* Add the Navbar component */}
           <main>
             <Routes>
-              <Route path="/" element={<Home />} />
+              <Route path="/home" element={<Home />} />
               <Route path="/products" element={<Products />} />
               <Route path="/cart" element={<Cart />} />
               <Route path="/account" element={<Account />} />
